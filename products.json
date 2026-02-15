@@ -1,0 +1,27 @@
+[
+  {
+    "id": "hoodie",
+    "name": "Kakaroo Hoodie",
+    "price": 79,
+    "image": "images/product1.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "stock": 12
+  },
+  {
+    "id": "polo",
+    "name": "Kakaroo Polo Shirt",
+    "price": 39,
+    "image": "images/product2.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "stock": 8
+  },
+  {
+    "id": "crew",
+    "name": "Kakaroo Crew Shirt",
+    "price": 49,
+    "image": "images/product3.jpg",
+    "sizes": ["S", "M", "L", "XL"],
+    "stock": 5
+  }
+]
+

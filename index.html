@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kakaroo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text-main: #111111;
+      --text-muted: #777777;
+      --border: #e5e5e5;
+      --accent: #000000;
+      --pattern-light: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("crow.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60vmin;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+
+body {
+  background-color: #ffffff;
+}
+
+
+/*
+body {
+  background-color: #dfffe0; /* soft light green 
+}
+*/
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* HERO */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 40px;
+  gap: 40px;
+}
+
+.hero-left img {
+  width: 280px; /* adjust size as needed */
+  height: auto;
+}
+
+.hero-left a img {
+  transition: opacity .2s ease;
+}
+
+.hero-left a:hover img {
+  opacity: 0.8;
+}
+
+.hero-right {
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-left img {
+    width: 200px;
+  }
+}
+
+
+    /* Replace the placeholder with your actual logo:
+       <img src="kakaroo-logo.svg" alt="Kakaroo logo" />
+    */
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .hero {
+  gap: 12px;
+}
+
+
+    .hero-subtitle {
+      max-width: 520px;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .btn-primary {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* PATTERN STRIP 
+
+    .pattern-strip {
+      width: 100%;
+      height: 72px;
+      margin: 24px 0 40px;
+      border-radius: 16px;
+      background-color: var(--pattern-light);
+      background-image:
+        radial-gradient(circle at 0 0, rgba(0, 0, 0, 0.04) 2px, transparent 0),
+        radial-gradient(circle at 16px 16px, rgba(0, 0, 0, 0.04) 2px, transparent 0);
+      background-size: 32px 32px;
+      opacity: 0.9;
+    }
+*/
+    /* ABOUT */
+
+    .section {
+      padding: 40px 0;
+      border-bottom: none;
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-header {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 0.98rem;
+      color: var(--text-main);
+    }
+
+    .about-mark {
+      border-radius: 20px;
+      border: 1px dashed var(--border);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.6;
+    }
+
+    .about-mark-inner {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 32px;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 12px;
+    }
+
+    .service-card {
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 18px 18px 20px;
+      position: relative;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .service-pattern {
+      position: absolute;
+      inset: auto 8px 8px auto;
+      width: 56px;
+      height: 56px;
+      opacity: 0.08;
+      background-image:
+        radial-gradient(circle at 0 0, #000 2px, transparent 0),
+        radial-gradient(circle at 16px 16px, #000 2px, transparent 0);
+      background-size: 32px 32px;
+      border-radius: 12px;
+    }
+
+    .service-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      margin-bottom: 6px; 
+    }
+
+    .service-body {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 260px;
+    }
+
+    .service-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+    .products {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.product {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product button {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.gallery {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.gallery-item img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.03);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.pdf-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.pdf-viewer iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  margin-top: 20px;
+}
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      padding: 40px 20px;
+      border-radius: 20px;
+      background-color: #fafafa;
+      background-image:
+        radial-gradient(circle at 0 0, rgba(0, 0, 0, 0.04) 2px, transparent 0),
+        radial-gradient(circle at 16px 16px, rgba(0, 0, 0, 0.04) 2px, transparent 0);
+      background-size: 32px 32px;
+    }
+
+    .cta-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 720px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 60vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <!-- HERO -->
+<section class="hero">
+
+  <div class="hero-left">
+    <a href="index.html">
+    <img src="images/look2.jpg" alt="Kakaroo logo" class="hero-logo-img" />
+    </a>
+  </div>
+
+  <div class="hero-right">
+    <h1 class="hero-title">Where KAKAROO signs</h1>
+    <p class="hero-subtitle">
+      Becomes a place for your fitness — and your evolution 
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary">Get Started</button>
+      <button class="btn-secondary">Learn More</button>
+    </div>
+  </div>
+
+</section>
+
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h2 class="section-header">Built for versatility. Designed for identity.</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          Kakaroo blends geometric precision with organic motion. From textiles to digital products,
+          the brand adapts effortlessly across industries while staying unmistakably yours.
+          <br /><br />
+          Your R-shaped mark becomes the anchor — a single, memorable silhouette that works on
+          fabric labels, app icons, packaging, and beyond.
+        </div>
+        <div class="about-mark">
+          <!-- Faint watermark-style logo area -->
+          <img src="images/look1.jpg" alt="Kakaroo logo" />
+        </div>        
+      </div>
+    </section>
+
+        <!-- SERVICES -->
+    <section class="section" id="services">
+      <h2 class="section-header">What Kakaroo Can offer</h2>
+      <div class="services-grid">
+<a href="textile-apparel.html" class="service-link">
+  <article class="service-card">
+    <div class="service-pattern" aria-hidden="true"></div>
+    <h3 class="service-title">Textile & Apparel</h3>
+    <p class="service-body">
+      Fabric patterns, woven labels, and product branding built around your iconic R silhouette.
+    </p>
+  </article>
+</a>
+        <article class="service-card">
+          <div class="service-pattern" aria-hidden="true"></div>
+          <h3 class="service-title">Digital &amp; UI</h3>
+          <p class="service-body">
+            App icons, interface branding, and micro-interactions that keep your mark front and center.
+          </p>
+        </article>
+          </div>
+    </section>
+    <!-- FOOTER -->
+    <footer>
+      <span>© Kakaroo</span>
+      <span><a href="mailto:balraj.d.gounder@gmail.com">Contact</a></span>
+    </footer>
+  </main>
+</body>
+</html>
