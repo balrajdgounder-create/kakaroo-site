@@ -139,11 +139,11 @@ body {
     .btn-primary {
       padding: 10px 22px;
       border-radius: 999px;
-      border: none;
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 0.95rem;
-      font-weight: 600;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: #f0d439;
+      font-size: 1.95rem;
+      font-weight: 900;
       cursor: pointer;
     }
 
@@ -152,9 +152,9 @@ body {
       border-radius: 999px;
       border: 1px solid var(--border);
       background: transparent;
-      color: var(--text-main);
-      font-size: 0.95rem;
-      font-weight: 500;
+      color: #24e20b;
+      font-size: 1.95rem;
+      font-weight: 900;
       cursor: pointer;
     }
 
@@ -423,19 +423,17 @@ body {
   </div>
 
   <div class="hero-right">
-    <h1 class="hero-title">Where KAKAROO signs</h1>
+    <h1 class="hero-title">
     <p class="hero-subtitle">
-      Becomes a place for your fitness — and your evolution 
+      
     </p>
 
     <div class="hero-actions">
-      <button class="btn-primary">Get Started</button>
-      <button class="btn-secondary">Learn More</button>
+      <a href="textile-apparel.html" button class="btn-primary">Products</button></a>
+      <a href="textile-apparel.html" button class="btn-secondary">Career</button></a>
     </div>
   </div>
-
 </section>
-<!-- test -->
 
     <!-- ABOUT -->
     <section class="section" id="about">
@@ -455,6 +453,25 @@ body {
       </div>
     </section>
 
+    <!-- GALLERY -->
+    <section class="gallery">
+      <h2>Gallery</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/product1.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 1">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/product2.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 2">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/product3.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 3">
+        </div>
+      </div>
+    </section>
+
         <!-- SERVICES -->
     <section class="section" id="services">
       <h2 class="section-header">What Kakaroo Can offer</h2>
@@ -462,17 +479,17 @@ body {
 <a href="textile-apparel.html" class="service-link">
   <article class="service-card">
     <div class="service-pattern" aria-hidden="true"></div>
-    <h3 class="service-title">Textile & Apparel</h3>
+    <h3 class="service-title">Products</h3>
     <p class="service-body">
-      Fabric patterns, woven labels, and product branding built around your iconic R silhouette.
+      Polo, Hoodie and Crew Shirts
     </p>
   </article>
 </a>
         <article class="service-card">
           <div class="service-pattern" aria-hidden="true"></div>
-          <h3 class="service-title">Digital &amp; UI</h3>
+          <h3 class="service-title">Career Consultaion</h3>
           <p class="service-body">
-            App icons, interface branding, and micro-interactions that keep your mark front and center.
+            To be discussed!
           </p>
         </article>
           </div>
@@ -485,4 +502,3 @@ body {
   </main>
 </body>
 </html>
-

@@ -5,23 +5,63 @@
     "price": 79,
     "image": "images/product1.jpg",
     "sizes": ["S", "M", "L", "XL"],
-    "stock": 12
+    "colours": [
+    { "name": "Black", "code": "#000000" },
+    { "name": "White", "code": "#FFFFFF" },
+    { "name": "Charcoal", "code": "#333333" },
+    { "name": "Red", "code": "#C62828" },
+    { "name": "Green", "code": "#2E7D32" }
+  ],
+    "stock": {
+    "Black":    { "S": 5, "M": 5, "L": 5, "XL": 5 },
+    "White":    { "S": 4, "M": 4, "L": 4, "XL": 4 },
+    "Charcoal": { "S": 6, "M": 6, "L": 6, "XL": 6 },
+    "Red":      { "S": 3, "M": 3, "L": 3, "XL": 3 },
+    "Green":    { "S": 2, "M": 2, "L": 2, "XL": 2 }
+  }
   },
-  {
-    "id": "polo",
-    "name": "Kakaroo Polo Shirt",
-    "price": 39,
-    "image": "images/product2.jpg",
-    "sizes": ["S", "M", "L", "XL"],
-    "stock": 8
-  },
+ {
+  "id": "polo",
+  "name": "Kakaroo Polo Shirt",
+  "price": 39,
+  "image": "images/product2.jpg",
+  "sizes": ["S", "M", "L", "XL"],   
+  "colours": [
+    { "name": "Black", "code": "#000000" },
+    { "name": "White", "code": "#FFFFFF" },
+    { "name": "Charcoal", "code": "#333333" },
+    { "name": "Red", "code": "#C62828" },
+    { "name": "Green", "code": "#2E7D32" }
+  ],
+  "stock": {
+    "Black":    { "S": 5, "M": 5, "L": 5, "XL": 5 },
+    "White":    { "S": 4, "M": 4, "L": 4, "XL": 4 },
+    "Charcoal": { "S": 6, "M": 6, "L": 6, "XL": 6 },
+    "Red":      { "S": 3, "M": 3, "L": 3, "XL": 3 },
+    "Green":    { "S": 2, "M": 2, "L": 2, "XL": 2 }
+  }
+},
+
   {
     "id": "crew",
     "name": "Kakaroo Crew Shirt",
     "price": 49,
     "image": "images/product3.jpg",
     "sizes": ["S", "M", "L", "XL"],
-    "stock": 5
+    "colours": [
+    { "name": "Black", "code": "#000000" },
+    { "name": "White", "code": "#FFFFFF" },
+    { "name": "Charcoal", "code": "#333333" },
+    { "name": "Red", "code": "#C62828" },
+    { "name": "Green", "code": "#2E7D32" }
+  ],
+    "stock": {
+    "Black":    { "S": 5, "M": 5, "L": 5, "XL": 5 },
+    "White":    { "S": 4, "M": 4, "L": 4, "XL": 4 },
+    "Charcoal": { "S": 6, "M": 6, "L": 6, "XL": 6 },
+    "Red":      { "S": 3, "M": 3, "L": 3, "XL": 3 },
+    "Green":    { "S": 2, "M": 2, "L": 2, "XL": 2 }
+  }
   }
 ]
 
