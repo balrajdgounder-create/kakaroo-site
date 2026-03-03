@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Kakaroo</title>
@@ -67,9 +69,9 @@ a {
 }
 
 .wordmark-home {
-  height: 90px;
-  width: auto;
-  display: block;
+    height: auto;
+    width: auto;
+    max-height: 120px; /* optional safety limit */
 }
 
 /* ============================
@@ -333,51 +335,151 @@ footer {
 }
   </style>
 </head>
+<body>
 
-<!-- HOMEPAGE HEADER -->
-<header class="site-header home-header">
-  <img src="images/look2.jpg" alt="KAKAROO" class="wordmark-home">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kakaroo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Your cleaned CSS stays in <style> or external file -->
+</head>
 
-<!-- HERO SECTION -->
+<body>
+
 <section class="hero">
+  <div class="hero-inner">
+    <h1 class="hero-title">TEST HERO</h1>
+    <p class="hero-subtitle">If you see gold background, hero is working.</p>
+  </div>
+</section>
+
+<main class="page">
+  <p>Page content starts here.</p>
+</main>
+
+</body>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <img src="images/look2.jpg" alt="KAKAROO" class="wordmark-home">
+  </header>
+
+  <!-- FULL-WIDTH GOLD HERO -->
+  <section class="hero">
     <div class="hero-inner">
 
-        <h1 class="hero-title">Move forward with the right talent.</h1>
+      <h1 class="hero-title">Move forward with the right talent.</h1>
 
-        <p class="hero-subtitle">
-            Specialised recruitment for Australia’s IT and technology sector. 
-            We connect skilled professionals with organisations ready to innovate, scale, and deliver.
-            Connecting Australia’s IT & tech talent with companies ready to innovate and grow.
-        </p>
+      <p class="hero-subtitle">
+        Specialised recruitment for Australia’s IT and technology sector.
+        We connect skilled professionals with organisations ready to innovate, scale, and deliver.
+      </p>
 
-        <!-- SEARCH BAR -->
-        <form class="job-search">
-            <input type="text" class="search-keyword" placeholder="Job title, skill, or keyword">
+      <!-- SEARCH BAR -->
+      <form class="job-search">
+        <input type="text" class="search-keyword" placeholder="Job title, skill, or keyword">
 
-            <select class="search-location">
-                <option>All Locations</option>
-                <option>Brisbane</option>
-                <option>Sydney</option>
-                <option>Melbourne</option>
-                <option>Canberra</option>
-                <option>Perth</option>
-                <option>Adelaide</option>
-                <option>Hobart</option>
-                <option>Darwin</option>
-                <option>Remote</option>
-            </select>
+        <select class="search-location">
+          <option>All Locations</option>
+          <option>Brisbane</option>
+          <option>Sydney</option>
+          <option>Melbourne</option>
+          <option>Canberra</option>
+          <option>Perth</option>
+          <option>Adelaide</option>
+          <option>Hobart</option>
+          <option>Darwin</option>
+          <option>Remote</option>
+        </select>
 
-            <button type="submit" class="search-btn">Search Jobs</button>
-        </form>
+        <button type="submit" class="search-btn">Search Jobs</button>
+      </form>
 
-        <!-- PRIMARY CTAS -->
-        <div class="hero-cta">
-            <a href="employers.html" class="btn primary">Hire Talent</a>
-            <a href="jobs.html" class="btn secondary">Find Jobs</a>
-            <a href="goodies.html" class="btn tertiary">Goodies</a>
-        </div>
+      <!-- HERO CTAS -->
+      <div class="hero-cta">
+        <a href="employers.html" class="btn primary">Hire Talent</a>
+        <a href="jobs.html" class="btn secondary">Find Jobs</a>
+        <a href="goodies.html" class="btn tertiary">Goodies</a>
+      </div>
 
     </div>
-</section>
+  </section>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="page">
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <h2 class="section-header">Built for versatility. Designed for identity.</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          Kakaroo blends geometric precision with organic motion. From textiles to digital products,
+          the brand adapts effortlessly across industries while staying unmistakably yours.
+          <br><br>
+          Your R-shaped mark becomes the anchor — a single, memorable silhouette that works on
+          fabric labels, app icons, packaging, and beyond.
+        </div>
+
+        <div class="about-mark">
+          <img src="images/look1.jpg" alt="Kakaroo logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery">
+      <h2>Gallery</h2>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/product1.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 1">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/product2.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 2">
+        </div>
+
+        <div class="gallery-item">
+          <img src="images/product3.jpg" onclick="showPDFfromGallery('docs/Kakaroo-Polo-Shirts.pdf')" alt="Look 3">
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section" id="services">
+      <h2 class="section-header">What Kakaroo Can Offer</h2>
+
+      <div class="services-grid">
+
+        <a href="textile-apparel.html" class="service-link">
+          <article class="service-card">
+            <div class="service-pattern" aria-hidden="true"></div>
+            <h3 class="service-title">Products</h3>
+            <p class="service-body">Polo, Hoodie and Crew Shirts</p>
+          </article>
+        </a>
+
+        <article class="service-card">
+          <div class="service-pattern" aria-hidden="true"></div>
+          <h3 class="service-title">Career Consultation</h3>
+          <p class="service-body">To be discussed!</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© Kakaroo</span>
+      <span><a href="mailto:balraj.d.gounder@gmail.com">Contact</a></span>
+    </footer>
+
+  </main>
+
+</body>
+</html>
