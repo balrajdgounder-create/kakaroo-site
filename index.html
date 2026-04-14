@@ -1028,7 +1028,7 @@
                         </div>
                         <div class="search-pill">Candidate view</div>
                     </div>
-                    <form class="search-grid" onsubmit="event.preventDefault(); alert('Search functionality to be wired to your backend or ATS.');">
+                    <form class="search-grid">
                         <div class="search-field">
                             <label class="search-label" for="search-keyword">What are you looking for?</label>
                             <input id="search-keyword" type="text" class="search-input" placeholder="Job title, skill, or keyword">
@@ -1066,6 +1066,18 @@
             </div>
         </div>
     </section>
+
+    <section id="job-results" class="section section-alt" style="display:none;">
+    <div class="section-inner">
+        <div class="section-header">
+            <div class="section-kicker">Job Results</div>
+            <h2 class="section-title">Matching roles</h2>
+            <p class="section-description">Based on your search criteria.</p>
+        </div>
+
+        <div id="job-list" class="features-grid"></div>
+    </div>
+</section>
 
     <!-- Why Kakaroo / Features -->
     <section class="section section-alt" id="features">
@@ -1235,6 +1247,63 @@
         </div>
     </section>
 
+    <section id="job-results" class="section section-alt" style="display:none;">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-kicker">Job Results</div>
+      <h2 class="section-title">Matching roles</h2>
+      <p class="section-description">Based on your search criteria.</p>
+    </div>
+
+    <div id="job-filters" style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:1.4rem;">
+      <button class="btn btn-secondary" data-category="">All</button>
+      <button class="btn btn-secondary" data-category="Software Engineering">Software Engineering</button>
+      <button class="btn btn-secondary" data-category="Cloud & DevOps">Cloud & DevOps</button>
+      <button class="btn btn-secondary" data-category="Cybersecurity">Cybersecurity</button>
+    </div>
+
+    <div id="job-list" class="features-grid"></div>
+
+    <div id="job-pagination" style="margin-top:1.6rem;display:flex;gap:0.6rem;"></div>
+  </div>
+</section>
+
+<!-- Job detail + apply modal -->
+<div id="job-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;">
+  <div style="background:#050608;color:#e5e7eb;border-radius:18px;max-width:560px;width:100%;padding:1.8rem;border:1px solid rgba(212,166,79,0.6);box-shadow:0 20px 60px rgba(0,0,0,0.6);position:relative;">
+    <button id="job-modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;">×</button>
+    <h3 id="job-modal-title" style="font-size:1.3rem;margin-bottom:0.4rem;"></h3>
+    <div id="job-modal-meta" style="font-size:0.85rem;color:#9ca3af;margin-bottom:0.9rem;"></div>
+    <p id="job-modal-description" style="font-size:0.9rem;margin-bottom:1rem;"></p>
+    <p id="job-modal-skills" style="font-size:0.85rem;color:#d1d5db;margin-bottom:1.2rem;"></p>
+    <button id="job-apply-btn" class="btn btn-primary" style="width:100%;justify-content:center;">Apply for this role</button>
+  </div>
+</div>
+
+<!-- Apply modal -->
+<div id="apply-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2100;align-items:center;justify-content:center;">
+  <div style="background:#050608;color:#e5e7eb;border-radius:18px;max-width:520px;width:100%;padding:1.8rem;border:1px solid rgba(212,166,79,0.6);box-shadow:0 20px 60px rgba(0,0,0,0.6);position:relative;">
+    <button id="apply-modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;">×</button>
+    <h3 id="apply-modal-title" style="font-size:1.2rem;margin-bottom:0.8rem;"></h3>
+    <form id="apply-form">
+      <input type="hidden" id="apply-job-id">
+      <div class="form-group">
+        <label for="apply-name">Name</label>
+        <input id="apply-name" type="text" required placeholder="Your name">
+      </div>
+      <div class="form-group">
+        <label for="apply-email">Email</label>
+        <input id="apply-email" type="email" required placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label for="apply-message">Message / Summary</label>
+        <textarea id="apply-message" placeholder="Briefly share your experience and interest."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send application</button>
+    </form>
+  </div>
+</div>
+
     <!-- Contact -->
     <section class="contact" id="contact">
         <div class="contact-inner">
@@ -1311,6 +1380,26 @@
     </footer>
 
     <script>
+
+        const applyForm = document.getElementById('apply-form');
+applyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const jobId = document.getElementById('apply-job-id').value;
+    const name = document.getElementById('apply-name').value;
+    const email = document.getElementById('apply-email').value;
+    const message = document.getElementById('apply-message').value;
+
+    const job = ALL_JOBS.find(j => j.id == jobId);
+    const to = 'your-email@yourdomain.com'; // <-- same or different inbox
+    const subject = encodeURIComponent(`Application for ${job.title} (ID: ${job.id})`);
+    const body = encodeURIComponent(
+        `Job: ${job.title} (ID: ${job.id})\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    closeApplyModal();
+});
+
         // Mobile menu toggle
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
@@ -1326,14 +1415,24 @@
         });
 
         // Contact form (placeholder behaviour)
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(contactForm);
-            const name = formData.get('name') || 'there';
-            alert(`Thanks ${name}! We’ve received your message and will be in touch.`);
-            contactForm.reset();
-        });
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(contactForm);
+    const name = data.get('name') || '';
+    const email = data.get('email') || '';
+    const role = data.get('role') || '';
+    const company = data.get('company') || '';
+    const message = data.get('message') || '';
+
+    const to = 'your-email@yourdomain.com'; // <-- put your real email here
+    const subject = encodeURIComponent(`Kakaroo contact from ${name}`);
+    const body = encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\nRole: ${role}\nCompany: ${company}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+});
 
         // Navbar shadow on scroll
         window.addEventListener('scroll', () => {
@@ -1344,6 +1443,187 @@
                 nav.style.boxShadow = 'none';
             }
         });
+
+        async function loadJobs() {
+    const response = await fetch('data/jobs.json');
+    return await response.json();
+}
+
+async function searchJobs(keyword, location) {
+    const jobs = await loadJobs();
+
+    keyword = keyword.toLowerCase();
+    location = location.toLowerCase();
+
+    return jobs.filter(job => {
+        const matchesKeyword =
+            job.title.toLowerCase().includes(keyword) ||
+            job.description.toLowerCase().includes(keyword) ||
+            job.skills.join(" ").toLowerCase().includes(keyword);
+
+        const matchesLocation =
+            location === "" || job.location.toLowerCase().includes(location);
+
+        return matchesKeyword && matchesLocation;
+    });
+}
+
+let ALL_JOBS = [];
+let CURRENT_RESULTS = [];
+let CURRENT_CATEGORY = "";
+let CURRENT_PAGE = 1;
+const PAGE_SIZE = 6;
+
+async function loadJobs() {
+    if (ALL_JOBS.length) return ALL_JOBS;
+    const response = await fetch('data/jobs.json');
+    ALL_JOBS = await response.json();
+    return ALL_JOBS;
+}
+
+function filterJobs(keyword, location, category) {
+    keyword = keyword.toLowerCase();
+    location = location.toLowerCase();
+    category = category.toLowerCase();
+
+    return ALL_JOBS.filter(job => {
+        const matchesKeyword =
+            !keyword ||
+            job.title.toLowerCase().includes(keyword) ||
+            job.description.toLowerCase().includes(keyword) ||
+            job.skills.join(" ").toLowerCase().includes(keyword);
+
+        const matchesLocation =
+            !location || job.location.toLowerCase().includes(location);
+
+        const matchesCategory =
+            !category || job.category.toLowerCase() === category;
+
+        return matchesKeyword && matchesLocation && matchesCategory;
+    });
+}
+
+function renderPagination(total) {
+    const container = document.getElementById('job-pagination');
+    container.innerHTML = "";
+    const pages = Math.ceil(total / PAGE_SIZE);
+    if (pages <= 1) return;
+
+    for (let i = 1; i <= pages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.className = 'btn btn-secondary';
+        if (i === CURRENT_PAGE) {
+            btn.style.background = 'var(--gold-gradient)';
+            btn.style.color = '#111827';
+        }
+        btn.addEventListener('click', () => {
+            CURRENT_PAGE = i;
+            renderJobResults();
+        });
+        container.appendChild(btn);
+    }
+}
+
+function openJobModal(job) {
+    const modal = document.getElementById('job-modal');
+    document.getElementById('job-modal-title').textContent = job.title;
+    document.getElementById('job-modal-meta').innerHTML =
+        `<strong>${job.location}</strong> · ${job.type} · ${job.category} · ${job.salary}`;
+    document.getElementById('job-modal-description').textContent = job.description;
+    document.getElementById('job-modal-skills').textContent =
+        'Key skills: ' + job.skills.join(', ');
+    document.getElementById('job-apply-btn').onclick = () => openApplyModal(job);
+    modal.style.display = 'flex';
+}
+
+function closeJobModal() {
+    document.getElementById('job-modal').style.display = 'none';
+}
+
+function openApplyModal(job) {
+    document.getElementById('apply-job-id').value = job.id;
+    document.getElementById('apply-modal-title').textContent = `Apply: ${job.title}`;
+    document.getElementById('apply-modal').style.display = 'flex';
+}
+
+function closeApplyModal() {
+    document.getElementById('apply-modal').style.display = 'none';
+}
+
+function renderJobResults() {
+    const container = document.getElementById('job-list');
+    const section = document.getElementById('job-results');
+    container.innerHTML = "";
+
+    if (!CURRENT_RESULTS.length) {
+        container.innerHTML = `<p>No matching roles found. Try different keywords or categories.</p>`;
+        document.getElementById('job-pagination').innerHTML = "";
+    } else {
+        const start = (CURRENT_PAGE - 1) * PAGE_SIZE;
+        const pageItems = CURRENT_RESULTS.slice(start, start + PAGE_SIZE);
+
+        pageItems.forEach(job => {
+            const card = document.createElement('div');
+            card.className = "feature-card";
+            card.style.cursor = "pointer";
+            card.innerHTML = `
+                <div class="feature-title">${job.title}</div>
+                <div class="feature-text">
+                    <strong>${job.location}</strong> · ${job.type} · ${job.category}<br>
+                    <strong>Salary:</strong> ${job.salary}<br><br>
+                    ${job.description}
+                </div>
+            `;
+            card.addEventListener('click', () => openJobModal(job));
+            container.appendChild(card);
+        });
+
+        renderPagination(CURRENT_RESULTS.length);
+    }
+
+    section.style.display = "block";
+    section.scrollIntoView({ behavior: "smooth" });
+}
+
+// Hook search form
+document.querySelector('.search-grid').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const keyword = document.getElementById('search-keyword').value;
+    const location = document.getElementById('search-location').value;
+
+    await loadJobs();
+    CURRENT_CATEGORY = "";
+    CURRENT_PAGE = 1;
+    CURRENT_RESULTS = filterJobs(keyword, location, CURRENT_CATEGORY);
+    renderJobResults();
+});
+
+// Category filters
+document.querySelectorAll('#job-filters button').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const category = btn.getAttribute('data-category') || "";
+        CURRENT_CATEGORY = category;
+        CURRENT_PAGE = 1;
+
+        const keyword = document.getElementById('search-keyword').value;
+        const location = document.getElementById('search-location').value;
+
+        await loadJobs();
+        CURRENT_RESULTS = filterJobs(keyword, location, CURRENT_CATEGORY);
+        renderJobResults();
+    });
+});
+
+// Modal close handlers
+document.getElementById('job-modal-close').addEventListener('click', closeJobModal);
+document.getElementById('apply-modal-close').addEventListener('click', closeApplyModal);
+document.getElementById('job-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'job-modal') closeJobModal();
+});
+document.getElementById('apply-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'apply-modal') closeApplyModal();
+});
     </script>
 </body>
 </html>
