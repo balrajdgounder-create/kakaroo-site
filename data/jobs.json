@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Senior Software Engineer",
+    "location": "Sydney",
+    "type": "Full-time",
+    "category": "Software Engineering",
+    "description": "Build and scale distributed systems for a high-growth Australian tech company.",
+    "skills": ["Node.js", "AWS", "Microservices"],
+    "salary": "$150k–$170k + Super"
+  },
+  {
+    "id": 2,
+    "title": "Cloud Engineer",
+    "location": "Melbourne",
+    "type": "Hybrid",
+    "category": "Cloud & DevOps",
+    "description": "Design and maintain cloud infrastructure across Azure and AWS environments.",
+    "skills": ["Azure", "Terraform", "CI/CD"],
+    "salary": "$135k–$155k + Super"
+  },
+  {
+    "id": 3,
+    "title": "Cybersecurity Analyst",
+    "location": "Brisbane",
+    "type": "Remote",
+    "category": "Cybersecurity",
+    "description": "Monitor, detect, and respond to security threats across enterprise systems.",
+    "skills": ["SIEM", "Incident Response", "Threat Modelling"],
+    "salary": "$120k–$140k + Super"
+  }
+]
