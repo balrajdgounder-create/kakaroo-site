@@ -1,1629 +1,2342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kakaroo | IT Recruitment & Brand Identity</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #d4a64f; /* Kakaroo gold */
-            --primary-dark: #b88c3e;
-            --dark: #050608;
-            --gray-900: #111827;
-            --gray-800: #1f2933;
-            --gray-700: #374151;
-            --gray-500: #6b7280;
-            --gray-300: #d1d5db;
-            --gray-100: #f3f4f6;
-            --white: #ffffff;
-            --bg-soft: #f7f7f5;
-            --gradient: linear-gradient(135deg, #1a1a1a 0%, #111827 40%, #000000 100%);
-            --gold-gradient: linear-gradient(135deg, #d4a64f 0%, #f1d18a 50%, #b88c3e 100%);
-            --radius-lg: 18px;
-            --radius-md: 12px;
-            --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.18);
-            --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: var(--gray-700);
-            background: var(--bg-soft);
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 3rem;
-            background: rgba(5, 6, 8, 0.92);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(212, 166, 79, 0.18);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            height: 80px;
-            width: auto;
-            display: block;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .nav-tagline {
-            font-size: 0.75rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(243, 244, 246, 0.7);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: rgba(249, 250, 251, 0.85);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s, opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            background: var(--gold-gradient);
-            color: #111827 !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 999px;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s !important;
-            box-shadow: 0 10px 25px rgba(212, 166, 79, 0.35);
-            border: 1px solid rgba(0, 0, 0, 0.6);
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 32px rgba(212, 166, 79, 0.45);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: 1px solid rgba(148, 163, 184, 0.5);
-            border-radius: 999px;
-            cursor: pointer;
-            padding: 0.4rem 0.6rem;
-        }
-
-        .mobile-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: #f9fafb;
-            margin: 4px 0;
-            transition: all 0.3s;
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 7rem 2rem 4rem;
-            background: radial-gradient(circle at 0% 0%, rgba(212, 166, 79, 0.12) 0%, transparent 55%),
-                        radial-gradient(circle at 100% 0%, rgba(148, 163, 184, 0.18) 0%, transparent 55%),
-                        var(--gradient);
-            position: relative;
-            overflow: hidden;
-            color: var(--white);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            left: -30%;
-            width: 70%;
-            height: 70%;
-            background: radial-gradient(circle, rgba(212, 166, 79, 0.18) 0%, transparent 60%);
-            filter: blur(4px);
-            opacity: 0.9;
-            animation: float 18s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            right: -20%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(15, 23, 42, 0.9) 0%, transparent 60%);
-            opacity: 0.9;
-            animation: float2 22s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(3%, 4%) rotate(2deg); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-3%, -2%) rotate(-1.5deg); }
-        }
-
-        .hero-inner {
-            position: relative;
-            max-width: 1100px;
-            width: 100%;
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(212, 166, 79, 0.6);
-            padding: 0.4rem 0.9rem;
-            border-radius: 999px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: rgba(249, 250, 251, 0.9);
-            margin-bottom: 1.4rem;
-        }
-
-        .hero-badge-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 999px;
-            background: #22c55e;
-            box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
-        }
-
-        .hero h1 {
-            font-size: clamp(2.6rem, 4vw, 3.4rem);
-            font-weight: 700;
-            color: #f9fafb;
-            line-height: 1.1;
-            margin-bottom: 1.4rem;
-        }
-
-        .hero h1 span {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-lead {
-            font-size: 1.05rem;
-            color: rgba(229, 231, 235, 0.9);
-            margin-bottom: 1rem;
-        }
-
-        .hero-body {
-            font-size: 0.98rem;
-            color: rgba(209, 213, 219, 0.9);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.95rem;
-            color: rgba(243, 244, 246, 0.9);
-            margin-bottom: 2rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.9rem;
-            margin-top: 1.4rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.9rem 1.6rem;
-            border-radius: 999px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s;
-            border: none;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: var(--gold-gradient);
-            color: #111827;
-            box-shadow: 0 14px 35px rgba(212, 166, 79, 0.45);
-            border: 1px solid rgba(0, 0, 0, 0.7);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 18px 45px rgba(212, 166, 79, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(15, 23, 42, 0.9);
-            color: #e5e7eb;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-        }
-
-        .btn-secondary:hover {
-            border-color: rgba(212, 166, 79, 0.8);
-            color: #f9fafb;
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: rgba(229, 231, 235, 0.9);
-            border: none;
-            padding-left: 0;
-        }
-
-        .btn-ghost span {
-            text-decoration: underline;
-            text-decoration-style: dotted;
-        }
-
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1.8rem;
-            font-size: 0.8rem;
-            color: rgba(209, 213, 219, 0.85);
-        }
-
-        .hero-meta-item strong {
-            display: block;
-            font-size: 0.9rem;
-            color: #f9fafb;
-        }
-
-        /* Hero Search Card */
-        .hero-search {
-            position: relative;
-            z-index: 1;
-        }
-
-        .search-card {
-            background: rgba(15, 23, 42, 0.96);
-            border-radius: var(--radius-lg);
-            padding: 1.6rem 1.6rem 1.4rem;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(212, 166, 79, 0.55);
-            backdrop-filter: blur(18px);
-        }
-
-        .search-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .search-card-title {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: #f9fafb;
-        }
-
-        .search-card-subtitle {
-            font-size: 0.8rem;
-            color: rgba(209, 213, 219, 0.85);
-        }
-
-        .search-pill {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            color: rgba(229, 231, 235, 0.9);
-        }
-
-        .search-grid {
-            display: grid;
-            grid-template-columns: 2.2fr 1.5fr auto;
-            gap: 0.75rem;
-            align-items: center;
-        }
-
-        .search-field {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .search-label {
-            font-size: 0.75rem;
-            color: rgba(209, 213, 219, 0.9);
-        }
-
-        .search-input,
-        .search-select {
-            width: 100%;
-            padding: 0.75rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            background: rgba(15, 23, 42, 0.95);
-            color: #f9fafb;
-            font-size: 0.9rem;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-        }
-
-        .search-input::placeholder {
-            color: rgba(148, 163, 184, 0.9);
-        }
-
-        .search-input:focus,
-        .search-select:focus {
-            border-color: rgba(212, 166, 79, 0.9);
-            box-shadow: 0 0 0 1px rgba(212, 166, 79, 0.7);
-            background: rgba(15, 23, 42, 1);
-        }
-
-        .search-button {
-            padding: 0.9rem 1.4rem;
-            border-radius: 999px;
-            border: none;
-            background: var(--gold-gradient);
-            color: #111827;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.4rem;
-            box-shadow: 0 12px 30px rgba(212, 166, 79, 0.55);
-            transition: transform 0.2s, box-shadow 0.2s;
-            white-space: nowrap;
-        }
-
-        .search-button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 16px 40px rgba(212, 166, 79, 0.7);
-        }
-
-        .search-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 0.9rem;
-            font-size: 0.75rem;
-            color: rgba(209, 213, 219, 0.85);
-        }
-
-        .search-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .search-tag {
-            padding: 0.15rem 0.6rem;
-            border-radius: 999px;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            font-size: 0.7rem;
-            color: rgba(229, 231, 235, 0.9);
-        }
-
-        .search-note {
-            opacity: 0.85;
-        }
-
-        /* Sections */
-        .section {
-            padding: 5rem 2rem;
-        }
-
-        .section-alt {
-            background: var(--white);
-        }
-
-        .section-muted {
-            background: #f5f5f3;
-        }
-
-        .section-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: left;
-            margin-bottom: 2.5rem;
-        }
-
-        .section-header.center {
-            text-align: center;
-        }
-
-        .section-kicker {
-            font-size: 0.8rem;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--primary-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--gray-900);
-            margin-bottom: 0.75rem;
-        }
-
-        .section-description {
-            font-size: 0.98rem;
-            color: var(--gray-600);
-            max-width: 620px;
-        }
-
-        /* Features (Recruitment value props) */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .feature-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 1.6rem 1.6rem 1.5rem;
-            border: 1px solid rgba(229, 231, 235, 0.9);
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-            border-color: rgba(212, 166, 79, 0.6);
-        }
-
-        .feature-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            background: rgba(212, 166, 79, 0.12);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .feature-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 0.4rem;
-        }
-
-        .feature-text {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-        }
-
-        /* Products */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.6rem;
-        }
-
-        .product-card {
-            background: #ffffff;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(229, 231, 235, 0.9);
-            overflow: hidden;
-            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-image {
-            height: 180px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .product-body {
-            padding: 1.2rem 1.3rem 1.1rem;
-        }
-
-        .product-title {
-            font-size: 0.98rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 0.3rem;
-        }
-
-        .product-meta {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-bottom: 0.6rem;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: var(--gray-700);
-        }
-
-        .product-tag {
-            padding: 0.2rem 0.6rem;
-            border-radius: 999px;
-            background: rgba(212, 166, 79, 0.12);
-            color: var(--primary-dark);
-            font-size: 0.75rem;
-        }
-
-        /* Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            gap: 1.6rem;
-        }
-
-        .gallery-main {
-            border-radius: var(--radius-lg);
-            background-size: cover;
-            background-position: center;
-            min-height: 260px;
-            box-shadow: var(--shadow-subtle);
-        }
-
-        .gallery-stack {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .gallery-item {
-            border-radius: var(--radius-md);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            min-height: 120px;
-            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
-        }
-
-        /* Services */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .service-card {
-            background: #050608;
-            color: #e5e7eb;
-            border-radius: var(--radius-lg);
-            padding: 1.8rem 1.7rem 1.6rem;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 0% 0%, rgba(212, 166, 79, 0.22) 0%, transparent 55%);
-            opacity: 0.9;
-            pointer-events: none;
-        }
-
-        .service-inner {
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: rgba(249, 250, 251, 0.7);
-            margin-bottom: 0.4rem;
-        }
-
-        .service-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #f9fafb;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-text {
-            font-size: 0.9rem;
-            color: rgba(209, 213, 219, 0.9);
-            margin-bottom: 0.9rem;
-        }
-
-        .service-meta {
-            font-size: 0.8rem;
-            color: rgba(209, 213, 219, 0.85);
-        }
-
-        /* Contact */
-        .contact {
-            padding: 5rem 2rem 4rem;
-            background: #050608;
-            color: #e5e7eb;
-        }
-
-        .contact-inner {
-            max-width: 900px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
-            gap: 3rem;
-            align-items: flex-start;
-        }
-
-        .contact-header .section-kicker {
-            color: rgba(212, 166, 79, 0.9);
-        }
-
-        .contact-header .section-title {
-            color: #f9fafb;
-        }
-
-        .contact-header .section-description {
-            color: rgba(209, 213, 219, 0.9);
-        }
-
-        .contact-meta {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: rgba(209, 213, 219, 0.9);
-        }
-
-        .contact-meta-item {
-            margin-bottom: 0.6rem;
-        }
-
-        .contact-meta-item span {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.16em;
-            color: rgba(148, 163, 184, 0.9);
-        }
-
-        .contact-form {
-            background: rgba(15, 23, 42, 0.96);
-            border-radius: var(--radius-lg);
-            padding: 1.8rem 1.8rem 1.6rem;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 500;
-            color: rgba(229, 231, 235, 0.95);
-            margin-bottom: 0.4rem;
-            font-size: 0.85rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem 0.9rem;
-            border-radius: 10px;
-            border: 1px solid rgba(55, 65, 81, 0.9);
-            background: rgba(15, 23, 42, 0.98);
-            color: #f9fafb;
-            font-size: 0.9rem;
-            font-family: inherit;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(148, 163, 184, 0.9);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: rgba(212, 166, 79, 0.9);
-            box-shadow: 0 0 0 1px rgba(212, 166, 79, 0.7);
-            background: rgba(15, 23, 42, 1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-submit {
-            margin-top: 0.6rem;
-            width: 100%;
-            display: inline-flex;
-            justify-content: center;
-        }
-
-        /* Footer */
-        .footer {
-            background: #020308;
-            color: rgba(148, 163, 184, 0.9);
-            padding: 2.5rem 2rem 2rem;
-            border-top: 1px solid rgba(31, 41, 55, 0.9);
-        }
-
-        .footer-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-        }
-
-        .footer-logo {
-            height: 30px;
-            filter: brightness(1.1);
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.4rem;
-            font-size: 0.85rem;
-        }
-
-        .footer-links a {
-            color: rgba(156, 163, 175, 0.95);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        .footer-meta {
-            font-size: 0.8rem;
-            color: rgba(107, 114, 128, 0.95);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-inner {
-                grid-template-columns: minmax(0, 1.1fr);
-            }
-
-            .hero-search {
-                max-width: 520px;
-                margin-top: 1.8rem;
-            }
-
-            .hero {
-                padding-top: 7.5rem;
-            }
-
-            .nav {
-                padding: 0.9rem 1.4rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: #050608;
-                flex-direction: column;
-                padding: 0.9rem 1.4rem 1.4rem;
-                gap: 0.9rem;
-                border-bottom: 1px solid rgba(31, 41, 55, 0.9);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-toggle {
-                display: block;
-            }
-
-            .hero {
-                padding: 6.5rem 1.4rem 3.5rem;
-            }
-
-            .hero-inner {
-                gap: 2.2rem;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .search-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .search-footer {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.4rem;
-            }
-
-            .section {
-                padding: 3.8rem 1.4rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-inner {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.1rem;
-            }
-
-            .hero-badge {
-                font-size: 0.75rem;
-            }
-
-            .nav-tagline {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kakaroo — IT Recruitment & Brand Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --ink:      #0D0D0D;
+  --off:      #F5F2EE;
+  --gold:     #C9A84C;
+  --gold-lt:  #E8CC7A;
+  --rust:     #C04B2B;
+  --slate:    #2A3240;
+  --mid:      #6B6860;
+  --border:   #E0DBD4;
+  --card:     #FAFAF8;
+  --white:    #FFFFFF;
+  --radius:   10px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  background: rgba(13,13,13,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.nav-logo {
+  text-decoration: none;
+  display: flex; align-items: center;
+  line-height: 0;
+}
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+nav ul a {
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .4px;
+  transition: color .2s;
+}
+nav ul a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--ink) !important;
+  padding: .45rem 1.2rem !important;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-family: 'Syne', sans-serif;
+}
+.nav-cta:hover { background: var(--gold-lt) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+  gap: 3rem;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+  top: -200px; right: -200px;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-text { position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 30px; height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-body {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 1.8rem;
+  border-radius: var(--radius);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .88rem;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: transform .15s, box-shadow .15s, background .2s;
+  letter-spacing: .3px;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { background: var(--gold-lt); box-shadow: 0 6px 24px rgba(201,168,76,.35); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.25); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-visual {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.hero-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  opacity: 0; animation: fadeUp .5s both;
+}
+.stat-card:nth-child(1) { animation-delay: .3s; }
+.stat-card:nth-child(2) { animation-delay: .45s; }
+.stat-card:nth-child(3) { animation-delay: .6s; }
+.stat-card:nth-child(4) { animation-delay: .75s; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+.stat-label { font-size: .78rem; color: rgba(255,255,255,.45); letter-spacing: .3px; }
+
+/* ── SECTION SHARED ── */
+.section { padding: 6rem 3rem; max-width: 1280px; margin: 0 auto; }
+.section-full { padding: 6rem 3rem; }
+.chip {
+  display: inline-block;
+  padding: .25rem .9rem;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 20px;
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: .9rem;
+}
+.section-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--ink);
+  margin-bottom: .9rem;
+}
+.section-h em { font-style: italic; color: var(--gold); }
+.section-sub {
+  color: var(--mid);
+  font-size: .97rem;
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 3rem;
+}
+
+/* ── WHY KAKAROO ── */
+#why { background: var(--off); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.feat-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.feat-card:hover {
+  box-shadow: 0 8px 36px rgba(0,0,0,.08);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.feat-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.feat-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  margin-bottom: .5rem;
+}
+.feat-desc { font-size: .87rem; color: var(--mid); line-height: 1.65; }
+
+/* ── JOBS SECTION ── */
+#jobs { background: var(--slate); }
+#jobs .section-full { max-width: 1280px; margin: 0 auto; }
+#jobs .section-h { color: var(--white); }
+#jobs .section-sub { color: rgba(255,255,255,.5); }
+
+.jobs-toolbar {
+  display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 2rem;
+}
+.jobs-toolbar input,
+.jobs-toolbar select {
+  flex: 1 1 180px;
+  padding: .65rem 1rem;
+  border: 1.5px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .88rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color .2s;
+}
+.jobs-toolbar input::placeholder { color: rgba(255,255,255,.35); }
+.jobs-toolbar select option { background: var(--slate); color: var(--white); }
+.jobs-toolbar input:focus,
+.jobs-toolbar select:focus { border-color: var(--gold); }
+.jobs-toolbar button {
+  padding: .65rem 1.5rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none; border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .88rem;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.jobs-toolbar button:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.2rem;
+}
+.job-card {
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .65rem;
+  transition: border-color .2s, background .2s, transform .2s;
+  animation: fadeUp .4s both;
+}
+.job-card:hover {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.08);
+  transform: translateY(-3px);
+}
+.job-card-top { display: flex; gap: .9rem; align-items: flex-start; }
+.job-logo {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: rgba(201,168,76,.15);
+  border: 1px solid rgba(201,168,76,.3);
+  display: grid; place-items: center; flex-shrink: 0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: .7rem;
+  color: var(--gold);
+}
+.job-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .97rem;
+  color: var(--white); line-height: 1.25;
+}
+.job-company { font-size: .82rem; color: var(--gold); margin-top: .15rem; }
+.job-meta { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tag {
+  padding: .2rem .65rem; border-radius: 20px;
+  font-size: .72rem; font-weight: 600;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.tag.full-time { background: rgba(61,154,61,.15); color: #7dd87d; border-color: rgba(61,154,61,.3); }
+.tag.part-time { background: rgba(255,180,0,.1); color: #ffc94d; border-color: rgba(255,180,0,.25); }
+.tag.contract  { background: rgba(130,100,220,.15); color: #b09af5; border-color: rgba(130,100,220,.3); }
+.tag.casual    { background: rgba(255,100,100,.1); color: #ff9090; border-color: rgba(255,100,100,.25); }
+.job-salary { font-size: .82rem; color: var(--gold); font-weight: 600; }
+.job-desc { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.6; flex: 1; }
+.job-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .3rem; }
+.job-date { font-size: .72rem; color: rgba(255,255,255,.3); }
+.job-apply {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .42rem 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  text-decoration: none; border-radius: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: .78rem; font-weight: 700;
+  transition: background .2s, transform .15s;
+}
+.job-apply:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.jobs-note {
+  margin-top: 2rem;
+  padding: 1rem 1.3rem;
+  background: rgba(201,168,76,.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  font-size: .82rem;
+  color: rgba(255,255,255,.45);
+  line-height: 1.65;
+}
+.jobs-note a { color: var(--gold); }
+.spinner-wrap { text-align: center; padding: 3rem; }
+.spinner {
+  display: inline-block; width: 36px; height: 36px;
+  border: 3px solid rgba(255,255,255,.1);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.no-results { text-align: center; color: rgba(255,255,255,.35); padding: 3rem; }
+
+/* ── APPAREL ── */
+#apparel { background: var(--off); }
+.apparel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.apparel-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.apparel-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.1);
+  transform: translateY(-4px);
+}
+.apparel-img {
+  height: 220px;
+  display: grid; place-items: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.apparel-img.dark { background: #0D0D0D; }
+.apparel-img.charcoal { background: #1E1E1E; }
+.apparel-img.cream-bg { background: #F0EBE3; }
+.apparel-badge {
+  position: absolute; top: .8rem; right: .8rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-size: .68rem; font-weight: 800;
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  letter-spacing: .5px;
+}
+.apparel-body { padding: 1.3rem; }
+.apparel-name {
+  font-family: 'Syne', sans-serif;
+  font-size: .97rem; font-weight: 700;
+  margin-bottom: .3rem;
+}
+.apparel-sub { font-size: .8rem; color: var(--mid); margin-bottom: .8rem; line-height: 1.5; }
+.apparel-footer { display: flex; align-items: center; justify-content: space-between; }
+.apparel-price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.05rem;
+  color: var(--ink);
+}
+.apparel-tag {
+  font-size: .72rem; font-weight: 600;
+  color: var(--mid);
+  background: var(--off);
+  padding: .2rem .6rem; border-radius: 4px;
+}
+
+/* ── SERVICES ── */
+#services { background: var(--ink); }
+#services .section-h { color: var(--white); }
+#services .section-sub { color: rgba(255,255,255,.45); }
+.services-list { display: flex; flex-direction: column; gap: 1px; }
+.service-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.service-row:hover { background: rgba(255,255,255,.03); }
+.service-num {
+  font-family: 'Syne', sans-serif;
+  font-size: .7rem; font-weight: 700;
+  color: rgba(201,168,76,.6);
+  letter-spacing: 2px;
+}
+.service-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--white);
+}
+.service-desc { font-size: .87rem; color: rgba(255,255,255,.4); line-height: 1.65; }
+.service-ideal {
+  font-size: .75rem; color: rgba(201,168,76,.7);
+  font-style: italic; text-align: right;
+  white-space: nowrap;
+}
+
+/* ── BULK ORDER ── */
+#order { background: var(--off); }
+.order-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+.order-left { position: sticky; top: 90px; }
+.order-left .section-h { margin-bottom: 1.2rem; }
+.order-perks { display: flex; flex-direction: column; gap: .9rem; margin-top: 2rem; }
+.perk {
+  display: flex; align-items: flex-start; gap: .9rem;
+  padding: 1rem 1.2rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+}
+.perk-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem; }
+.perk-text strong { display: block; font-size: .88rem; font-weight: 700; margin-bottom: .2rem; }
+.perk-text span { font-size: .8rem; color: var(--mid); line-height: 1.5; }
+
+.form-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 40px rgba(0,0,0,.06);
+}
+.form-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  margin: 1.5rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.form-section-title:first-child { margin-top: 0; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-grid .full { grid-column: 1 / -1; }
+label {
+  display: block;
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: .4px; text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: .35rem;
+}
+input[type=text], input[type=email], input[type=tel],
+input[type=number], select, textarea {
+  width: 100%;
+  padding: .68rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--off);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; color: var(--ink);
+  outline: none;
+  transition: border-color .2s, background .2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+textarea { resize: vertical; min-height: 85px; }
+
+.products-table { width: 100%; border-collapse: collapse; margin-top: .3rem; }
+.products-table th {
+  background: var(--off);
+  padding: .55rem .7rem;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+  color: var(--mid); text-align: left;
+  border-bottom: 1.5px solid var(--border);
+}
+.products-table td { padding: .45rem .5rem; }
+.products-table tr:not(:last-child) td { border-bottom: 1px solid #f0ece6; }
+.products-table input, .products-table select {
+  padding: .4rem .6rem;
+  font-size: .82rem;
+}
+.add-row-btn {
+  margin-top: .8rem;
+  background: transparent;
+  border: 1.5px dashed var(--border);
+  color: var(--gold);
+  padding: .5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .82rem;
+  transition: border-color .2s, background .2s;
+}
+.add-row-btn:hover { border-color: var(--gold); background: rgba(201,168,76,.05); }
+.remove-row { background: none; border: none; color: #cc3333; cursor: pointer; padding: 0 .3rem; font-size: .9rem; }
+
+.submit-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 2.2rem;
+  background: var(--ink); color: var(--gold);
+  border: none; border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: .95rem;
+  cursor: pointer; margin-top: 1.5rem;
+  transition: background .2s, transform .15s, box-shadow .15s;
+  letter-spacing: .3px;
+}
+.submit-btn:hover {
+  background: var(--slate);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.2);
+}
+.submit-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.form-success {
+  display: none; margin-top: 1.5rem;
+  padding: 1.1rem 1.3rem;
+  background: #eef7ee;
+  border-left: 4px solid #4caf50;
+  border-radius: 8px;
+  color: #2e7d32; font-weight: 600; font-size: .9rem;
+}
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--ink);
+  padding: 6rem 3rem;
+}
+#contact .inner { max-width: 1280px; margin: 0 auto; }
+#contact .section-h { color: var(--white); }
+#contact .section-sub { color: rgba(255,255,255,.45); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.contact-box {
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color .2s;
+}
+.contact-box:hover { border-color: rgba(201,168,76,.4); }
+.contact-box h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--white); margin-bottom: .5rem;
+}
+.contact-box p { font-size: .87rem; color: rgba(255,255,255,.4); line-height: 1.65; margin-bottom: 1.2rem; }
+.contact-box input,
+.contact-box select,
+.contact-box textarea {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  color: var(--white);
+}
+.contact-box input::placeholder,
+.contact-box textarea::placeholder { color: rgba(255,255,255,.25); }
+.contact-box input:focus,
+.contact-box select:focus,
+.contact-box textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.08);
+}
+.contact-box label { color: rgba(255,255,255,.4); }
+.contact-form-grid { display: flex; flex-direction: column; gap: .9rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--white)#060606;
+  border-top: 1px solid rgba(201,168,76,.12);
+  padding: 2.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  text-decoration: none;
+  display: inline-flex; align-items: center;
+  line-height: 0;
+}
+.footer-logo-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+footer p { font-size: .8rem; color: rgba(255,255,255,.3); }
+footer a { color: Var(--black) rgba(201,168,76,.7); text-decoration: none; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  .hero-visual { display: none; }
+  .service-row { grid-template-columns: 60px 1fr; }
+  .service-desc, .service-ideal { display: none; }
+  .order-layout { grid-template-columns: 1fr; }
+  .order-left { position: static; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 1.2rem; }
+  nav ul { display: none; }
+  .section, .section-full { padding: 4rem 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: 1; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-left">
-            <img src="images/look2.jpg" alt="Kakaroo" class="logo">
-            <div class="nav-tagline">IT Recruitment & Brand Identity</div>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Why Kakaroo</a></li>
-            <li><a href="#products">Apparel</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact" class="nav-cta">Talk to Us</a></li>
-        </ul>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="hero-inner">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    IT & Digital Talent · Australia
-                </div>
-                <h1>Move forward with the <span>right talent</span>.</h1>
-                <p class="hero-lead">
-                    Kakaroo specialises in connecting Australia’s most capable IT professionals with organisations ready to innovate, scale, and deliver real impact.
-                </p>
-                <p class="hero-body">
-                    Whether you're building new digital capabilities, strengthening your engineering teams, or accelerating transformation, we help you secure talent that elevates performance — not just fills roles. Our approach blends precision, insight, and a deep understanding of the Australian technology landscape, ensuring every placement supports long‑term growth and meaningful outcomes.
-                </p>
-                <p class="hero-subtitle">
-                    Australia’s trusted partner for IT recruitment, delivering talent that drives innovation and long‑term success.
-                </p>
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo"><img src="data:image/png;base64,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" alt="Kakaroo" class="nav-logo-img"/></a>
+  <ul>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#jobs">Jobs</a></li>
+    <li><a href="#apparel">Apparel</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#order">Bulk Orders</a></li>
+    <li><a href="#contact" class="nav-cta">Talk to Us</a></li>
+  </ul>
+</nav>
 
-                <div class="hero-actions">
-                    <a href="#contact" class="btn btn-primary">
-                        Hire IT Talent
-                        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </a>
-                    <a href="#features" class="btn btn-secondary">Explore how we work</a>
-                    <button class="btn btn-ghost" type="button" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-                        <span>View Kakaroo apparel</span>
-                    </button>
-                </div>
-
-                <div class="hero-meta">
-                    <div class="hero-meta-item">
-                        <strong>IT & Digital Focus</strong>
-                        Roles across engineering, cloud, data, security, and product.
-                    </div>
-                    <div class="hero-meta-item">
-                        <strong>Australian‑led</strong>
-                        Deep understanding of local teams, markets, and expectations.
-                    </div>
-                </div>
-            </div>
-
-            <div class="hero-search">
-                <div class="search-card">
-                    <div class="search-card-header">
-                        <div>
-                            <div class="search-card-title">Search current opportunities</div>
-                            <div class="search-card-subtitle">Find roles aligned to your skills, ambitions, and preferred way of working.</div>
-                        </div>
-                        <div class="search-pill">Candidate view</div>
-                    </div>
-                    <form class="search-grid">
-                        <div class="search-field">
-                            <label class="search-label" for="search-keyword">What are you looking for?</label>
-                            <input id="search-keyword" type="text" class="search-input" placeholder="Job title, skill, or keyword">
-                        </div>
-                        <div class="search-field">
-                            <label class="search-label" for="search-location">Location</label>
-                            <select id="search-location" class="search-select">
-                                <option value="">All Australia</option>
-                                <option value="brisbane">Brisbane</option>
-                                <option value="sydney">Sydney</option>
-                                <option value="melbourne">Melbourne</option>
-                                <option value="remote">Remote / Hybrid</option>
-                            </select>
-                        </div>
-                        <button class="search-button" type="submit">
-                            Search jobs
-                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                                <circle cx="11" cy="11" r="6"></circle>
-                                <path d="m16 16 4 4"></path>
-                            </svg>
-                        </button>
-                    </form>
-                    <div class="search-footer">
-                        <div class="search-tags">
-                            <span class="search-tag">Software Engineering</span>
-                            <span class="search-tag">Cloud & DevOps</span>
-                            <span class="search-tag">Data & Analytics</span>
-                            <span class="search-tag">Cybersecurity</span>
-                        </div>
-                        <div class="search-note">
-                            Prefer to talk it through? Reach out and we’ll map roles to your profile.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="job-results" class="section section-alt" style="display:none;">
-    <div class="section-inner">
-        <div class="section-header">
-            <div class="section-kicker">Job Results</div>
-            <h2 class="section-title">Matching roles</h2>
-            <p class="section-description">Based on your search criteria.</p>
-        </div>
-
-        <div id="job-list" class="features-grid"></div>
+<!-- HERO -->
+<div id="home" class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">IT Recruitment & Brand Identity · Australia</p>
+    <h1>Move forward with<br>the <em>right talent.</em></h1>
+    <p class="hero-body">Kakaroo connects Australia's most capable IT professionals with organisations ready to innovate, scale, and deliver real impact — with precision, insight, and care.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Hire IT Talent</a>
+      <a href="#jobs" class="btn btn-outline">Browse Jobs</a>
     </div>
-</section>
-
-    <!-- Why Kakaroo / Features -->
-    <section class="section section-alt" id="features">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-kicker">Why Kakaroo</div>
-                <h2 class="section-title">Recruitment that respects both talent and teams.</h2>
-                <p class="section-description">
-                    We operate at the intersection of precision, care, and commercial reality — matching IT professionals with environments where they can actually thrive, and organisations with people who move the needle.
-                </p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <div class="feature-title">Deep IT specialisation</div>
-                    <div class="feature-text">
-                        From software engineering and cloud to data, security, and product, we focus exclusively on technology roles — so conversations stay sharp, relevant, and grounded in reality.
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🤝</div>
-                    <div class="feature-title">Human‑centred matching</div>
-                    <div class="feature-text">
-                        Beyond skills and titles, we look at working styles, team dynamics, and long‑term fit. The goal isn’t just to place — it’s to build relationships that last.
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📍</div>
-                    <div class="feature-title">Australian context, global standards</div>
-                    <div class="feature-text">
-                        We understand the nuance of Australian teams and markets, while operating with the pace and polish you’d expect from a global search partner.
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <div class="feature-title">Intentional, responsive delivery</div>
-                    <div class="feature-text">
-                        Clear communication, curated shortlists, and no noise. We respect your time — and your brand — in every interaction with candidates.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Apparel / Products -->
-    <section class="section section-muted" id="products">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-kicker">Kakaroo Apparel</div>
-                <h2 class="section-title">Carry your identity beyond the screen.</h2>
-                <p class="section-description">
-                    Premium, minimal apparel designed to move with you — from the office to events, conferences, and everything in between. Built for teams who care about how they show up.
-                </p>
-            </div>
-
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image" style="background-image:url('images/product1.jpg');"></div>
-                    <div class="product-body">
-                        <div class="product-title">Kakaroo Core Tee</div>
-                        <div class="product-meta">Heavyweight cotton · Unisex fit · Subtle chest mark</div>
-                        <div class="product-footer">
-                            <span>$59 AUD</span>
-                            <span class="product-tag">Teams & gifts</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image:url('images/product2.jpg');"></div>
-                    <div class="product-body">
-                        <div class="product-title">Midnight Logo Tee</div>
-                        <div class="product-meta">Black on black · Tonal Kakaroo mark · Clean and understated</div>
-                        <div class="product-footer">
-                            <span>$65 AUD</span>
-                            <span class="product-tag">Limited</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image" style="background-image:url('images/product3.jpg');"></div>
-                    <div class="product-body">
-                        <div class="product-title">Gold Accent Edition</div>
-                        <div class="product-meta">Signature gold detailing · Premium finish · Statement piece</div>
-                        <div class="product-footer">
-                            <span>$72 AUD</span>
-                            <span class="product-tag">Signature</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="section section-alt" id="gallery">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-kicker">In Use</div>
-                <h2 class="section-title">Kakaroo in the wild.</h2>
-                <p class="section-description">
-                    From internal teams to client events and conferences, Kakaroo apparel is designed to feel considered, not promotional — a quiet signal of identity.
-                </p>
-            </div>
-
-            <div class="gallery-grid">
-                <div class="gallery-main" style="background-image:url('images/look1.jpg');"></div>
-                <div class="gallery-stack">
-                    <div class="gallery-item" style="background-image:url('docs/Kakaroo-Polo-Shirts.pdf');"></div>
-                    <div class="gallery-item" style="background-image:url('docs/Kakaroo-Polo-Shirts.pdf');"></div>
-                    <div class="gallery-item" style="background-image:url('docs/Kakaroo-Polo-Shirts.pdf');"></div>
-                    <div class="gallery-item" style="background-image:url('docs/Kakaroo-Polo-Shirts.pdf');"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="section" id="services">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-kicker">Services</div>
-                <h2 class="section-title">Built for teams that take hiring seriously.</h2>
-                <p class="section-description">
-                    Whether you’re scaling a product team, stabilising critical infrastructure, or building out new capabilities, we shape our work around your reality — not the other way around.
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-inner">
-                        <div class="service-label">01 · Targeted search</div>
-                        <div class="service-title">Specialist IT recruitment</div>
-                        <div class="service-text">
-                            Curated shortlists across software, cloud, data, security, and product. We combine network, research, and direct outreach to surface people who actually fit the brief.
-                        </div>
-                        <div class="service-meta">
-                            Ideal for: Growth‑stage teams, new capability builds, and critical hires.
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-inner">
-                        <div class="service-label">02 · Embedded support</div>
-                        <div class="service-title">Ongoing hiring partnership</div>
-                        <div class="service-text">
-                            For organisations with consistent hiring needs, we operate as an extension of your internal team — aligning to your processes, brand, and pace.
-                        </div>
-                        <div class="service-meta">
-                            Ideal for: Scale‑ups, multi‑role roadmaps, and evolving teams.
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-inner">
-                        <div class="service-label">03 · Brand in motion</div>
-                        <div class="service-title">Talent & apparel integration</div>
-                        <div class="service-text">
-                            Combine recruitment with considered apparel for onboarding, events, and recognition — creating a consistent, tactile expression of your brand.
-                        </div>
-                        <div class="service-meta">
-                            Ideal for: Culture‑driven teams and organisations investing in experience.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="job-results" class="section section-alt" style="display:none;">
-  <div class="section-inner">
-    <div class="section-header">
-      <div class="section-kicker">Job Results</div>
-      <h2 class="section-title">Matching roles</h2>
-      <p class="section-description">Based on your search criteria.</p>
-    </div>
-
-    <div id="job-filters" style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:1.4rem;">
-      <button class="btn btn-secondary" data-category="">All</button>
-      <button class="btn btn-secondary" data-category="Software Engineering">Software Engineering</button>
-      <button class="btn btn-secondary" data-category="Cloud & DevOps">Cloud & DevOps</button>
-      <button class="btn btn-secondary" data-category="Cybersecurity">Cybersecurity</button>
-    </div>
-
-    <div id="job-list" class="features-grid"></div>
-
-    <div id="job-pagination" style="margin-top:1.6rem;display:flex;gap:0.6rem;"></div>
   </div>
-</section>
-
-<!-- Job detail + apply modal -->
-<div id="job-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;">
-  <div style="background:#050608;color:#e5e7eb;border-radius:18px;max-width:560px;width:100%;padding:1.8rem;border:1px solid rgba(212,166,79,0.6);box-shadow:0 20px 60px rgba(0,0,0,0.6);position:relative;">
-    <button id="job-modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;">×</button>
-    <h3 id="job-modal-title" style="font-size:1.3rem;margin-bottom:0.4rem;"></h3>
-    <div id="job-modal-meta" style="font-size:0.85rem;color:#9ca3af;margin-bottom:0.9rem;"></div>
-    <p id="job-modal-description" style="font-size:0.9rem;margin-bottom:1rem;"></p>
-    <p id="job-modal-skills" style="font-size:0.85rem;color:#d1d5db;margin-bottom:1.2rem;"></p>
-    <button id="job-apply-btn" class="btn btn-primary" style="width:100%;justify-content:center;">Apply for this role</button>
+  <div class="hero-visual">
+    <div class="hero-stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Placements made</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Tech disciplines</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">AU</div>
+        <div class="stat-label">Australia-wide reach</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- Apply modal -->
-<div id="apply-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2100;align-items:center;justify-content:center;">
-  <div style="background:#050608;color:#e5e7eb;border-radius:18px;max-width:520px;width:100%;padding:1.8rem;border:1px solid rgba(212,166,79,0.6);box-shadow:0 20px 60px rgba(0,0,0,0.6);position:relative;">
-    <button id="apply-modal-close" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#9ca3af;font-size:1.2rem;cursor:pointer;">×</button>
-    <h3 id="apply-modal-title" style="font-size:1.2rem;margin-bottom:0.8rem;"></h3>
-    <form id="apply-form">
-      <input type="hidden" id="apply-job-id">
-      <div class="form-group">
-        <label for="apply-name">Name</label>
-        <input id="apply-name" type="text" required placeholder="Your name">
+<!-- WHY KAKAROO -->
+<div id="why" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Why Kakaroo</div>
+    <h2 class="section-h fade-in">Recruitment that respects<br>both <em>talent and teams.</em></h2>
+    <p class="section-sub fade-in">We operate at the intersection of precision, care, and commercial reality — matching IT professionals with environments where they can actually thrive.</p>
+    <div class="features-grid">
+      <div class="feat-card fade-in">
+        <span class="feat-icon">🎯</span>
+        <div class="feat-title">Deep IT Specialisation</div>
+        <p class="feat-desc">Software engineering, cloud, data, security, and product. We focus exclusively on technology roles — so conversations stay sharp, relevant, and grounded.</p>
       </div>
-      <div class="form-group">
-        <label for="apply-email">Email</label>
-        <input id="apply-email" type="email" required placeholder="you@example.com">
+      <div class="feat-card fade-in">
+        <span class="feat-icon">🤝</span>
+        <div class="feat-title">Human-Centred Matching</div>
+        <p class="feat-desc">Beyond skills and titles, we look at working styles, team dynamics, and long-term fit. The goal isn't just to place — it's to build relationships that last.</p>
       </div>
-      <div class="form-group">
-        <label for="apply-message">Message / Summary</label>
-        <textarea id="apply-message" placeholder="Briefly share your experience and interest."></textarea>
+      <div class="feat-card fade-in">
+        <span class="feat-icon">📍</span>
+        <div class="feat-title">Australian Context, Global Standards</div>
+        <p class="feat-desc">We understand the nuance of Australian teams and markets, while operating with the pace and polish you'd expect from a global search partner.</p>
       </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send application</button>
-    </form>
+      <div class="feat-card fade-in">
+        <span class="feat-icon">⚡</span>
+        <div class="feat-title">Intentional, Responsive Delivery</div>
+        <p class="feat-desc">Clear communication, curated shortlists, and no noise. We respect your time — and your brand — in every interaction with candidates.</p>
+      </div>
+    </div>
   </div>
 </div>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="contact-inner">
-            <div class="contact-header">
-                <div class="section-kicker">Contact</div>
-                <h2 class="section-title">Let’s talk about what you’re building.</h2>
-                <p class="section-description">
-                    Whether you’re hiring now, planning ahead, or exploring how recruitment and brand can work together, we’re happy to start with a conversation — no pressure, no noise.
-                </p>
+<!-- JOBS SECTION -->
+<div id="jobs" style="background:var(--slate)">
+  <div class="section-full section">
+    <div class="chip">Career Opportunities</div>
+    <h2 class="section-h">Latest <em>IT Job Listings</em></h2>
+    <p class="section-sub">Curated roles across Australia. Clicking "Apply" takes you directly to the full listing on Seek.com.au.</p>
 
-                <div class="contact-meta">
-                    <div class="contact-meta-item">
-                        <span>For hiring managers</span>
-                        Share where you’re heading, the roles you’re considering, and the kind of people who thrive in your environment.
-                    </div>
-                    <div class="contact-meta-item">
-                        <span>For candidates</span>
-                        Tell us what you’re great at, how you like to work, and where you want to go next.
-                    </div>
-                </div>
-            </div>
+    <div class="jobs-toolbar">
+      <input type="text" id="jobSearch" placeholder="Search title, skill, keyword…" oninput="filterJobs()"/>
+      <select id="jobCategory" onchange="filterJobs()">
+        <option value="">All Disciplines</option>
+        <option>Software Engineering</option>
+        <option>Cloud & DevOps</option>
+        <option>Data & Analytics</option>
+        <option>Cybersecurity</option>
+        <option>Product & Design</option>
+        <option>IT Leadership</option>
+      </select>
+      <select id="jobType" onchange="filterJobs()">
+        <option value="">All Types</option>
+        <option>Full Time</option>
+        <option>Part Time</option>
+        <option>Contract</option>
+        <option>Casual</option>
+      </select>
+      <button onclick="refreshJobs()">↻ Refresh</button>
+    </div>
 
-            <form class="contact-form" id="contactForm">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input id="name" name="name" type="text" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" name="email" type="email" placeholder="you@example.com" required>
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="role">I’m reaching out as</label>
-                        <input id="role" name="role" type="text" placeholder="Hiring manager, candidate, founder, etc.">
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company (optional)</label>
-                        <input id="company" name="company" type="text" placeholder="Your organisation">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Share a bit about what you’re looking for, timelines, or questions."></textarea>
-                </div>
-                <div class="contact-submit">
-                    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-                        Send message
-                    </button>
-                </div>
-            </form>
+    <div id="jobsContainer" class="jobs-grid"></div>
+
+    <div class="jobs-note">
+      ⚡ <strong>How this works:</strong> Listings are sourced from <a href="https://www.seek.com.au" target="_blank">Seek.com.au</a>. "Apply" opens the listing on Seek directly. Want to feature a role exclusively on Kakaroo? <a href="#contact">Talk to us.</a>
+    </div>
+  </div>
+</div>
+
+<!-- APPAREL -->
+<div id="apparel" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Kakaroo Apparel</div>
+    <h2 class="section-h fade-in">Carry your identity<br><em>beyond the screen.</em></h2>
+    <p class="section-sub fade-in">Premium, minimal apparel designed to move with you — from the office to events, conferences, and everything in between.</p>
+    <div class="apparel-grid">
+      <div class="apparel-card fade-in">
+        <div class="apparel-img dark">👕</div>
+        <div class="apparel-body">
+          <div class="apparel-name">Kakaroo Core Tee</div>
+          <div class="apparel-sub">Heavyweight cotton · Unisex fit · Subtle chest mark</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$59 AUD</div>
+            <div class="apparel-tag">Teams & Gifts</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-left">
-                <img src="images/look2.jpg" alt="Kakaroo" class="footer-logo">
-                <div class="footer-meta">
-                    &copy; 2025 Kakaroo. IT Recruitment & Brand Identity.
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#features">Why Kakaroo</a>
-                <a href="#products">Apparel</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-            </div>
+      </div>
+      <div class="apparel-card fade-in">
+        <div class="apparel-img charcoal">
+          👕
+          <span class="apparel-badge">LIMITED</span>
         </div>
-    </footer>
+        <div class="apparel-body">
+          <div class="apparel-name">Midnight Logo Tee</div>
+          <div class="apparel-sub">Black on black · Tonal Kakaroo mark · Clean and understated</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$65 AUD</div>
+            <div class="apparel-tag">Limited Run</div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-card fade-in">
+        <div class="apparel-img cream-bg">
+          👕
+          <span class="apparel-badge">SIGNATURE</span>
+        </div>
+        <div class="apparel-body">
+          <div class="apparel-name">Gold Accent Edition</div>
+          <div class="apparel-sub">Signature gold detailing · Premium finish · Statement piece</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$72 AUD</div>
+            <div class="apparel-tag">Signature</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.85rem;color:var(--mid);">Want to order apparel in bulk for your team or event? <a href="#order" style="color:var(--gold);text-decoration:none;font-weight:600;">Place a bulk order →</a></p>
+  </div>
+</div>
 
-    <script>
+<!-- SERVICES -->
+<div id="services" style="background:var(--ink)">
+  <div class="section">
+    <div class="chip">Services</div>
+    <h2 class="section-h fade-in">Built for teams that take<br><em>hiring seriously.</em></h2>
+    <p class="section-sub fade-in">We shape our work around your reality — not the other way around.</p>
+    <div class="services-list">
+      <div class="service-row fade-in">
+        <div class="service-num">01 · Search</div>
+        <div class="service-name">Specialist IT Recruitment</div>
+        <div class="service-desc">Curated shortlists across software, cloud, data, security, and product. We combine network, research, and direct outreach to surface people who actually fit the brief.</div>
+        <div class="service-ideal">Growth-stage teams & critical hires</div>
+      </div>
+      <div class="service-row fade-in">
+        <div class="service-num">02 · Embedded</div>
+        <div class="service-name">Ongoing Hiring Partnership</div>
+        <div class="service-desc">For organisations with consistent hiring needs, we operate as an extension of your internal team — aligning to your processes, brand, and pace.</div>
+        <div class="service-ideal">Scale-ups & evolving teams</div>
+      </div>
+      <div class="service-row fade-in">
+        <div class="service-num">03 · Brand</div>
+        <div class="service-name">Talent & Apparel Integration</div>
+        <div class="service-desc">Combine recruitment with considered apparel for onboarding, events, and recognition — creating a consistent, tactile expression of your brand.</div>
+        <div class="service-ideal">Culture-driven organisations</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        const applyForm = document.getElementById('apply-form');
-applyForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const jobId = document.getElementById('apply-job-id').value;
-    const name = document.getElementById('apply-name').value;
-    const email = document.getElementById('apply-email').value;
-    const message = document.getElementById('apply-message').value;
+<!-- BULK ORDER -->
+<div id="order" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Wholesale & Bulk Supply</div>
+    <div class="order-layout">
+      <div class="order-left">
+        <h2 class="section-h fade-in">Place a<br><em>Bulk Order.</em></h2>
+        <p class="section-sub fade-in" style="margin-bottom:0">Need products in volume? Fill in your details and we'll confirm availability and pricing within 1–2 business days.</p>
+        <div class="order-perks">
+          <div class="perk fade-in">
+            <div class="perk-icon">📦</div>
+            <div class="perk-text">
+              <strong>Any quantity, any product</strong>
+              <span>From small team orders to full pallet runs — we handle it.</span>
+            </div>
+          </div>
+          <div class="perk fade-in">
+            <div class="perk-icon">⚡</div>
+            <div class="perk-text">
+              <strong>Fast turnaround quote</strong>
+              <span>We respond with pricing and availability within 1–2 business days.</span>
+            </div>
+          </div>
+          <div class="perk fade-in">
+            <div class="perk-icon">🇦🇺</div>
+            <div class="perk-text">
+              <strong>Australia-wide delivery</strong>
+              <span>Brisbane-based, delivering across all states and territories.</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    const job = ALL_JOBS.find(j => j.id == jobId);
-    const to = 'your-email@yourdomain.com'; // <-- same or different inbox
-    const subject = encodeURIComponent(`Application for ${job.title} (ID: ${job.id})`);
-    const body = encodeURIComponent(
-        `Job: ${job.title} (ID: ${job.id})\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+      <div class="form-card fade-in">
+        <form id="bulkForm" onsubmit="submitOrder(event)">
+          <div class="form-section-title">Your Details</div>
+          <div class="form-grid">
+            <div>
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" required placeholder="Jane"/>
+            </div>
+            <div>
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" required placeholder="Smith"/>
+            </div>
+            <div>
+              <label for="company">Company / Business</label>
+              <input type="text" id="company" name="company" placeholder="Acme Pty Ltd"/>
+            </div>
+            <div>
+              <label for="abn">ABN (optional)</label>
+              <input type="text" id="abn" name="abn" placeholder="12 345 678 901"/>
+            </div>
+            <div>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="jane@company.com.au"/>
+            </div>
+            <div>
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="04XX XXX XXX"/>
+            </div>
+            <div class="full">
+              <label for="address">Delivery Address *</label>
+              <input type="text" id="address" name="address" required placeholder="123 Main St, Brisbane QLD 4000"/>
+            </div>
+          </div>
 
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    closeApplyModal();
-});
+          <div class="form-section-title">Products Required</div>
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>Product Name / SKU</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="productsBody">
+              <tr>
+                <td><input type="text" name="product[]" placeholder="e.g. Kakaroo Core Tee" required/></td>
+                <td>
+                  <select name="cat[]">
+                    <option>Apparel</option>
+                    <option>Cleaning & Hygiene</option>
+                    <option>Packaging</option>
+                    <option>Office Supplies</option>
+                    <option>Safety & PPE</option>
+                    <option>General Merchandise</option>
+                    <option>Other</option>
+                  </select>
+                </td>
+                <td><input type="number" name="qty[]" min="1" placeholder="50" required style="width:70px"/></td>
+                <td>
+                  <select name="unit[]">
+                    <option>Units</option>
+                    <option>Boxes</option>
+                    <option>Cartons</option>
+                    <option>Pallets</option>
+                    <option>Kg</option>
+                    <option>Litres</option>
+                  </select>
+                </td>
+                <td><button type="button" class="remove-row" onclick="removeRow(this)">✕</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="add-row-btn" onclick="addRow()">+ Add Another Product</button>
 
-        // Mobile menu toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
+          <div class="form-section-title">Additional Info</div>
+          <div class="form-grid">
+            <div class="full">
+              <label for="delivery">Preferred Delivery Date</label>
+              <input type="text" id="delivery" name="delivery" placeholder="e.g. Within 2 weeks, or DD/MM/YYYY"/>
+            </div>
+            <div class="full">
+              <label for="notes">Special Instructions</label>
+              <textarea id="notes" name="notes" placeholder="Packaging requirements, delivery instructions, budget range, sizing breakdown…"></textarea>
+            </div>
+          </div>
 
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            Send Bulk Order Request
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          ✅ Request sent to <strong>info@kakaroo.com.au</strong> — we'll be in touch within 1–2 business days.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+<!-- CONTACT -->
+<div id="contact" style="background:var(--ink)">
+  <div class="section">
+    <div class="chip">Let's Talk</div>
+    <h2 class="section-h fade-in">Let's talk about<br>what you're <em>building.</em></h2>
+    <p class="section-sub fade-in">Whether you're hiring now, planning ahead, or exploring how recruitment and brand can work together — start with a conversation.</p>
+    <div class="contact-grid">
+      <div class="contact-box fade-in">
+        <h3>For Hiring Managers</h3>
+        <p>Share where you're heading, the roles you're considering, and the kind of people who thrive in your environment.</p>
+        <div class="contact-form-grid">
+          <div><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div><label>Email</label><input type="email" placeholder="you@company.com"/></div>
+          <div><label>Company</label><input type="text" placeholder="Company name (optional)"/></div>
+          <div><label>Message</label><textarea placeholder="Tell us about your team and what you're looking to build…"></textarea></div>
+          <button class="btn btn-gold" style="justify-content:center" onclick="sendContact('hiring')">Send Message</button>
+        </div>
+      </div>
+      <div class="contact-box fade-in">
+        <h3>For Candidates</h3>
+        <p>Tell us what you're great at, how you like to work, and where you want to go next.</p>
+        <div class="contact-form-grid">
+          <div><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+          <div>
+            <label>I'm reaching out as</label>
+            <select style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:var(--white)">
+              <option>A candidate seeking roles</option>
+              <option>A hiring manager</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div><label>Message</label><textarea placeholder="Briefly describe your background and what you're looking for…"></textarea></div>
+          <button class="btn btn-gold" style="justify-content:center" onclick="sendContact('candidate')">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        // Contact form (placeholder behaviour)
-const contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(contactForm);
-    const name = data.get('name') || '';
-    const email = data.get('email') || '';
-    const role = data.get('role') || '';
-    const company = data.get('company') || '';
-    const message = data.get('message') || '';
+<!-- FOOTER -->
+<footer>
+  <a href="#home" class="footer-logo"><img src="data:image/png;base64,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" alt="Kakaroo" class="footer-logo-img"/></a>
+  <p>© 2026 Kakaroo · IT Recruitment & Brand Identity · Brisbane, Australia</p>
+  <p><a href="mailto:info@kakaroo.com.au">info@kakaroo.com.au</a></p>
+</footer>
 
-    const to = 'your-email@yourdomain.com'; // <-- put your real email here
-    const subject = encodeURIComponent(`Kakaroo contact from ${name}`);
-    const body = encodeURIComponent(
-        `Name: ${name}\nEmail: ${email}\nRole: ${role}\nCompany: ${company}\n\nMessage:\n${message}`
-    );
+<script>
+/* ── JOBS DATA ── */
+const JOBS = [
+  { id:1, title:"Senior Software Engineer – Full Stack", company:"Atlassian", location:"Sydney NSW", type:"Full Time", category:"Software Engineering", salary:"$150k – $185k + equity", posted:"Today", desc:"React, Node.js, and distributed systems experience required. Work on products used by millions of teams worldwide.", logo:"AT", url:"https://www.buyict.gov.au/public?id=opportunity_details&table=u_lh_procurement&sys_id=d8e4116f97900f1069a3b486f053aff4&entry=opp_page" },
+  { id:2, title:"Cloud Platform Engineer (AWS)", company:"ANZ Bank", location:"Melbourne VIC", type:"Full Time", category:"Cloud & DevOps", salary:"$130k – $155k", posted:"1 day ago", desc:"Lead cloud infrastructure design on AWS. Terraform, Kubernetes, and CI/CD pipeline experience essential.", logo:"ANZ", url:"https://www.buyict.gov.au/public?id=opportunity_details&table=u_lh_procurement&sys_id=371b61079744cf9069a3b486f053af34&entry=opp_page" },
+  { id:3, title:"Data Engineer – Analytics Platform", company:"Woolworths Group", location:"Brisbane QLD", type:"Full Time", category:"Data & Analytics", salary:"$120k – $140k", posted:"2 days ago", desc:"Build and maintain scalable data pipelines. dbt, Snowflake, and Python required. Hybrid work available.", logo:"WW", url:"https://www.seek.com.au/job-search?keywords=Data+Engineer&where=Brisbane" },
+  { id:4, title:"Cybersecurity Analyst (SOC)", company:"CrowdStrike", location:"Remote / Australia", type:"Contract", category:"Cybersecurity", salary:"$90 – $120/hr", posted:"Today", desc:"Tier 2 SOC analyst position. SIEM experience, threat hunting, and incident response capabilities required.", logo:"CS", url:"https://www.seek.com.au/job-search?keywords=Cybersecurity+Analyst+SOC+Australia" },
+  { id:5, title:"Product Manager – Mobile Apps", company:"Canva", location:"Sydney NSW", type:"Full Time", category:"Product & Design", salary:"$160k – $200k", posted:"3 days ago", desc:"Own the mobile product roadmap. 5+ years PM experience, strong data-driven decision making, and design sensibility.", logo:"CV", url:"https://www.seek.com.au/job-search?keywords=Product+Manager+Mobile&where=Sydney" },
+  { id:6, title:"DevOps Engineer – Azure", company:"Telstra", location:"Brisbane QLD", type:"Full Time", category:"Cloud & DevOps", salary:"$115k – $140k", posted:"2 days ago", desc:"Azure infrastructure, pipelines, and automation. Experience with GitOps and monitoring tools like Datadog preferred.", logo:"TS", url:"https://www.seek.com.au/job-search?keywords=DevOps+Engineer+Azure&where=Brisbane" },
+  { id:7, title:"Frontend Developer – React/TypeScript", company:"REA Group", location:"Melbourne VIC", type:"Full Time", category:"Software Engineering", salary:"$110k – $135k", posted:"4 days ago", desc:"Build consumer-facing features on realestate.com.au. Strong React, TypeScript, and accessibility knowledge required.", logo:"RE", url:"https://www.seek.com.au/job-search?keywords=Frontend+Developer+React+TypeScript&where=Melbourne" },
+  { id:8, title:"IT Director – Digital Transformation", company:"Kakaroo Client", location:"Brisbane QLD", type:"Full Time", category:"IT Leadership", salary:"$220k – $260k package", posted:"Today", desc:"Executive technology leadership role. Drive cloud migration and digital capability uplift for a major Queensland organisation.", logo:"KK", url:"https://www.seek.com.au/job-search?keywords=IT+Director+Digital+Transformation&where=Brisbane" },
+  { id:9, title:"ML Engineer – NLP / LLM", company:"Canva", location:"Remote / Australia", type:"Full Time", category:"Data & Analytics", salary:"$170k – $210k", posted:"1 day ago", desc:"Apply large language models to product features used by 150M+ users. Python, PyTorch, and production ML systems experience.", logo:"CV", url:"https://www.seek.com.au/job-search?keywords=ML+Engineer+NLP&where=Australia" },
+];
 
-    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-});
+let filtered = [...JOBS];
 
-        // Navbar shadow on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 40) {
-                nav.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.35)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        async function loadJobs() {
-    const response = await fetch('data/jobs.json');
-    return await response.json();
+function renderJobs(jobs) {
+  const c = document.getElementById('jobsContainer');
+  if (!jobs.length) {
+    c.innerHTML = '<p class="no-results">No roles found — try adjusting your search.</p>';
+    return;
+  }
+  c.innerHTML = jobs.map((j, i) => `
+    <div class="job-card" style="animation-delay:${i * 0.05}s">
+      <div class="job-card-top">
+        <div class="job-logo">${j.logo}</div>
+        <div>
+          <div class="job-title">${j.title}</div>
+          <div class="job-company">${j.company}</div>
+        </div>
+      </div>
+      <div class="job-meta">
+        <span class="tag">${j.location}</span>
+        <span class="tag ${j.type.toLowerCase().replace(' ','-')}">${j.type}</span>
+        <span class="tag">${j.category}</span>
+      </div>
+      <div class="job-salary">💰 ${j.salary}</div>
+      <p class="job-desc">${j.desc}</p>
+      <div class="job-footer">
+        <span class="job-date">📅 ${j.posted}</span>
+        <a class="job-apply" href="${j.url}" target="_blank" rel="noopener">
+          Apply on Seek
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  `).join('');
 }
 
-async function searchJobs(keyword, location) {
-    const jobs = await loadJobs();
-
-    keyword = keyword.toLowerCase();
-    location = location.toLowerCase();
-
-    return jobs.filter(job => {
-        const matchesKeyword =
-            job.title.toLowerCase().includes(keyword) ||
-            job.description.toLowerCase().includes(keyword) ||
-            job.skills.join(" ").toLowerCase().includes(keyword);
-
-        const matchesLocation =
-            location === "" || job.location.toLowerCase().includes(location);
-
-        return matchesKeyword && matchesLocation;
-    });
+function filterJobs() {
+  const kw  = document.getElementById('jobSearch').value.toLowerCase();
+  const cat = document.getElementById('jobCategory').value;
+  const typ = document.getElementById('jobType').value;
+  filtered = JOBS.filter(j =>
+    (!kw  || j.title.toLowerCase().includes(kw) || j.company.toLowerCase().includes(kw) || j.desc.toLowerCase().includes(kw)) &&
+    (!cat || j.category === cat) &&
+    (!typ || j.type === typ)
+  );
+  renderJobs(filtered);
 }
 
-let ALL_JOBS = [];
-let CURRENT_RESULTS = [];
-let CURRENT_CATEGORY = "";
-let CURRENT_PAGE = 1;
-const PAGE_SIZE = 6;
-
-async function loadJobs() {
-    if (ALL_JOBS.length) return ALL_JOBS;
-    const response = await fetch('data/jobs.json');
-    ALL_JOBS = await response.json();
-    return ALL_JOBS;
+function refreshJobs() {
+  const c = document.getElementById('jobsContainer');
+  c.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div></div>';
+  setTimeout(() => { renderJobs(JOBS); document.getElementById('jobSearch').value=''; document.getElementById('jobCategory').value=''; document.getElementById('jobType').value=''; }, 900);
 }
 
-function filterJobs(keyword, location, category) {
-    keyword = keyword.toLowerCase();
-    location = location.toLowerCase();
-    category = category.toLowerCase();
+renderJobs(JOBS);
 
-    return ALL_JOBS.filter(job => {
-        const matchesKeyword =
-            !keyword ||
-            job.title.toLowerCase().includes(keyword) ||
-            job.description.toLowerCase().includes(keyword) ||
-            job.skills.join(" ").toLowerCase().includes(keyword);
-
-        const matchesLocation =
-            !location || job.location.toLowerCase().includes(location);
-
-        const matchesCategory =
-            !category || job.category.toLowerCase() === category;
-
-        return matchesKeyword && matchesLocation && matchesCategory;
-    });
+/* ── PRODUCT ROWS ── */
+function addRow() {
+  const tbody = document.getElementById('productsBody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" name="product[]" placeholder="Product name" required/></td>
+    <td><select name="cat[]"><option>Apparel</option><option>Cleaning & Hygiene</option><option>Packaging</option><option>Office Supplies</option><option>Safety & PPE</option><option>General Merchandise</option><option>Other</option></select></td>
+    <td><input type="number" name="qty[]" min="1" placeholder="50" required style="width:70px"/></td>
+    <td><select name="unit[]"><option>Units</option><option>Boxes</option><option>Cartons</option><option>Pallets</option><option>Kg</option><option>Litres</option></select></td>
+    <td><button type="button" class="remove-row" onclick="removeRow(this)">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+function removeRow(btn) {
+  if (document.querySelectorAll('#productsBody tr').length > 1) btn.closest('tr').remove();
 }
 
-function renderPagination(total) {
-    const container = document.getElementById('job-pagination');
-    container.innerHTML = "";
-    const pages = Math.ceil(total / PAGE_SIZE);
-    if (pages <= 1) return;
-
-    for (let i = 1; i <= pages; i++) {
-        const btn = document.createElement('button');
-        btn.textContent = i;
-        btn.className = 'btn btn-secondary';
-        if (i === CURRENT_PAGE) {
-            btn.style.background = 'var(--gold-gradient)';
-            btn.style.color = '#111827';
-        }
-        btn.addEventListener('click', () => {
-            CURRENT_PAGE = i;
-            renderJobResults();
-        });
-        container.appendChild(btn);
-    }
+/* ── BULK ORDER SUBMIT ── */
+function submitOrder(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const fd = new FormData(e.target);
+  const names = fd.getAll('product[]'), cats = fd.getAll('cat[]'), qtys = fd.getAll('qty[]'), units = fd.getAll('unit[]');
+  const products = names.map((n,i) => `  ${i+1}. ${n} | ${cats[i]} | ${qtys[i]} ${units[i]}`).join('\n');
+  const body = `BULK ORDER – Kakaroo\n${'='.repeat(40)}\nName:    ${fd.get('fname')} ${fd.get('lname')}\nCompany: ${fd.get('company')||'—'}\nABN:     ${fd.get('abn')||'—'}\nEmail:   ${fd.get('email')}\nPhone:   ${fd.get('phone')}\nAddress: ${fd.get('address')}\nDelivery:${fd.get('delivery')||'—'}\n\nPRODUCTS:\n${products}\n\nNOTES:\n${fd.get('notes')||'—'}`;
+  window.location.href = `mailto:info@kakaroo.com.au?subject=${encodeURIComponent('Bulk Order – '+fd.get('fname')+' '+fd.get('lname'))}&body=${encodeURIComponent(body)}`;
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg> Send Bulk Order Request`;
+    e.target.reset();
+  }, 1500);
 }
 
-function openJobModal(job) {
-    const modal = document.getElementById('job-modal');
-    document.getElementById('job-modal-title').textContent = job.title;
-    document.getElementById('job-modal-meta').innerHTML =
-        `<strong>${job.location}</strong> · ${job.type} · ${job.category} · ${job.salary}`;
-    document.getElementById('job-modal-description').textContent = job.description;
-    document.getElementById('job-modal-skills').textContent =
-        'Key skills: ' + job.skills.join(', ');
-    document.getElementById('job-apply-btn').onclick = () => openApplyModal(job);
-    modal.style.display = 'flex';
+/* ── CONTACT ── */
+function sendContact(type) {
+  alert(`Thanks for reaching out! In production this submits to info@kakaroo.com.au. Connect a backend or Formspree to activate.`);
 }
 
-function closeJobModal() {
-    document.getElementById('job-modal').style.display = 'none';
+/* ── SCROLL ANIMATIONS ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kakaroo — IT Recruitment & Brand Identity</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+:root {
+  --ink:      #0D0D0D;
+  --off:      #F5F2EE;
+  --gold:     #C9A84C;
+  --gold-lt:  #E8CC7A;
+  --rust:     #C04B2B;
+  --slate:    #2A3240;
+  --mid:      #6B6860;
+  --border:   #E0DBD4;
+  --card:     #FAFAF8;
+  --white:    #FFFFFF;
+  --radius:   10px;
 }
 
-function openApplyModal(job) {
-    document.getElementById('apply-job-id').value = job.id;
-    document.getElementById('apply-modal-title').textContent = `Apply: ${job.title}`;
-    document.getElementById('apply-modal').style.display = 'flex';
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--off);
+  color: var(--ink);
+  overflow-x: hidden;
 }
 
-function closeApplyModal() {
-    document.getElementById('apply-modal').style.display = 'none';
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem;
+  background: #ffffff;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+.nav-logo {
+  text-decoration: none;
+  display: flex; align-items: center;
+  line-height: 0;
+}
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+nav ul { list-style: none; display: flex; gap: 2.2rem; align-items: center; }
+nav ul a {
+  color: rgba(0,0,0,.55);
+  text-decoration: none;
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .4px;
+  transition: color .2s;
+}
+nav ul a:hover { color: var(--rust); }
+.nav-cta {
+  background: var(--ink) !important;
+  color: var(--white) !important;
+  padding: .45rem 1.2rem !important;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-family: 'Syne', sans-serif;
+}
+.nav-cta:hover { background: var(--rust) !important; color: var(--white) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 3rem 5rem;
+  position: relative;
+  overflow: hidden;
+  gap: 3rem;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+  top: -200px; right: -200px;
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.hero-text { position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block; width: 30px; height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+.hero-body {
+  color: rgba(255,255,255,.55);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .8rem 1.8rem;
+  border-radius: var(--radius);
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .88rem;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: transform .15s, box-shadow .15s, background .2s;
+  letter-spacing: .3px;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-gold { background: var(--gold); color: var(--ink); }
+.btn-gold:hover { background: var(--gold-lt); box-shadow: 0 6px 24px rgba(201,168,76,.35); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.25); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-visual {
+  position: relative;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.hero-stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+}
+.stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  opacity: 0; animation: fadeUp .5s both;
+}
+.stat-card:nth-child(1) { animation-delay: .3s; }
+.stat-card:nth-child(2) { animation-delay: .45s; }
+.stat-card:nth-child(3) { animation-delay: .6s; }
+.stat-card:nth-child(4) { animation-delay: .75s; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem; font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: .3rem;
+}
+.stat-label { font-size: .78rem; color: rgba(255,255,255,.45); letter-spacing: .3px; }
+
+/* ── SECTION SHARED ── */
+.section { padding: 6rem 3rem; max-width: 1280px; margin: 0 auto; }
+.section-full { padding: 6rem 3rem; }
+.chip {
+  display: inline-block;
+  padding: .25rem .9rem;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 20px;
+  color: var(--gold);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: .9rem;
+}
+.section-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.12;
+  color: var(--ink);
+  margin-bottom: .9rem;
+}
+.section-h em { font-style: italic; color: var(--gold); }
+.section-sub {
+  color: var(--mid);
+  font-size: .97rem;
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 3rem;
 }
 
-function renderJobResults() {
-    const container = document.getElementById('job-list');
-    const section = document.getElementById('job-results');
-    container.innerHTML = "";
+/* ── WHY KAKAROO ── */
+#why { background: var(--off); }
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.feat-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.feat-card:hover {
+  box-shadow: 0 8px 36px rgba(0,0,0,.08);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.feat-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.feat-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  margin-bottom: .5rem;
+}
+.feat-desc { font-size: .87rem; color: var(--mid); line-height: 1.65; }
 
-    if (!CURRENT_RESULTS.length) {
-        container.innerHTML = `<p>No matching roles found. Try different keywords or categories.</p>`;
-        document.getElementById('job-pagination').innerHTML = "";
-    } else {
-        const start = (CURRENT_PAGE - 1) * PAGE_SIZE;
-        const pageItems = CURRENT_RESULTS.slice(start, start + PAGE_SIZE);
+/* ── JOBS SECTION ── */
+#jobs { background: var(--slate); }
+#jobs .section-full { max-width: 1280px; margin: 0 auto; }
+#jobs .section-h { color: var(--white); }
+#jobs .section-sub { color: rgba(255,255,255,.5); }
 
-        pageItems.forEach(job => {
-            const card = document.createElement('div');
-            card.className = "feature-card";
-            card.style.cursor = "pointer";
-            card.innerHTML = `
-                <div class="feature-title">${job.title}</div>
-                <div class="feature-text">
-                    <strong>${job.location}</strong> · ${job.type} · ${job.category}<br>
-                    <strong>Salary:</strong> ${job.salary}<br><br>
-                    ${job.description}
-                </div>
-            `;
-            card.addEventListener('click', () => openJobModal(job));
-            container.appendChild(card);
-        });
+.jobs-toolbar {
+  display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 2rem;
+}
+.jobs-toolbar input,
+.jobs-toolbar select {
+  flex: 1 1 180px;
+  padding: .65rem 1rem;
+  border: 1.5px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.06);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .88rem;
+  color: var(--white);
+  outline: none;
+  transition: border-color .2s;
+}
+.jobs-toolbar input::placeholder { color: rgba(255,255,255,.35); }
+.jobs-toolbar select option { background: var(--slate); color: var(--white); }
+.jobs-toolbar input:focus,
+.jobs-toolbar select:focus { border-color: var(--gold); }
+.jobs-toolbar button {
+  padding: .65rem 1.5rem;
+  background: var(--gold);
+  color: var(--ink);
+  border: none; border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .88rem;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+}
+.jobs-toolbar button:hover { background: var(--gold-lt); transform: translateY(-1px); }
 
-        renderPagination(CURRENT_RESULTS.length);
-    }
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.2rem;
+}
+.job-card {
+  background: rgba(255,255,255,.05);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .65rem;
+  transition: border-color .2s, background .2s, transform .2s;
+  animation: fadeUp .4s both;
+}
+.job-card:hover {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.08);
+  transform: translateY(-3px);
+}
+.job-card-top { display: flex; gap: .9rem; align-items: flex-start; }
+.job-logo {
+  width: 44px; height: 44px; border-radius: 8px;
+  background: rgba(201,168,76,.15);
+  border: 1px solid rgba(201,168,76,.3);
+  display: grid; place-items: center; flex-shrink: 0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: .7rem;
+  color: var(--gold);
+}
+.job-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .97rem;
+  color: var(--white); line-height: 1.25;
+}
+.job-company { font-size: .82rem; color: var(--gold); margin-top: .15rem; }
+.job-meta { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tag {
+  padding: .2rem .65rem; border-radius: 20px;
+  font-size: .72rem; font-weight: 600;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.tag.full-time { background: rgba(61,154,61,.15); color: #7dd87d; border-color: rgba(61,154,61,.3); }
+.tag.part-time { background: rgba(255,180,0,.1); color: #ffc94d; border-color: rgba(255,180,0,.25); }
+.tag.contract  { background: rgba(130,100,220,.15); color: #b09af5; border-color: rgba(130,100,220,.3); }
+.tag.casual    { background: rgba(255,100,100,.1); color: #ff9090; border-color: rgba(255,100,100,.25); }
+.job-salary { font-size: .82rem; color: var(--gold); font-weight: 600; }
+.job-desc { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.6; flex: 1; }
+.job-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .3rem; }
+.job-date { font-size: .72rem; color: rgba(255,255,255,.3); }
+.job-apply {
+  display: inline-flex; align-items: center; gap: .35rem;
+  padding: .42rem 1rem;
+  background: var(--gold);
+  color: var(--ink);
+  text-decoration: none; border-radius: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: .78rem; font-weight: 700;
+  transition: background .2s, transform .15s;
+}
+.job-apply:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.jobs-note {
+  margin-top: 2rem;
+  padding: 1rem 1.3rem;
+  background: rgba(201,168,76,.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  font-size: .82rem;
+  color: rgba(255,255,255,.45);
+  line-height: 1.65;
+}
+.jobs-note a { color: var(--gold); }
+.spinner-wrap { text-align: center; padding: 3rem; }
+.spinner {
+  display: inline-block; width: 36px; height: 36px;
+  border: 3px solid rgba(255,255,255,.1);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.no-results { text-align: center; color: rgba(255,255,255,.35); padding: 3rem; }
 
-    section.style.display = "block";
-    section.scrollIntoView({ behavior: "smooth" });
+/* ── APPAREL ── */
+#apparel { background: var(--off); }
+.apparel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.apparel-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.apparel-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,.1);
+  transform: translateY(-4px);
+}
+.apparel-img {
+  height: 220px;
+  display: grid; place-items: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.apparel-img.dark { background: #0D0D0D; }
+.apparel-img.charcoal { background: #1E1E1E; }
+.apparel-img.cream-bg { background: #F0EBE3; }
+.apparel-badge {
+  position: absolute; top: .8rem; right: .8rem;
+  background: var(--gold);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-size: .68rem; font-weight: 800;
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  letter-spacing: .5px;
+}
+.apparel-body { padding: 1.3rem; }
+.apparel-name {
+  font-family: 'Syne', sans-serif;
+  font-size: .97rem; font-weight: 700;
+  margin-bottom: .3rem;
+}
+.apparel-sub { font-size: .8rem; color: var(--mid); margin-bottom: .8rem; line-height: 1.5; }
+.apparel-footer { display: flex; align-items: center; justify-content: space-between; }
+.apparel-price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 1.05rem;
+  color: var(--ink);
+}
+.apparel-tag {
+  font-size: .72rem; font-weight: 600;
+  color: var(--mid);
+  background: var(--off);
+  padding: .2rem .6rem; border-radius: 4px;
 }
 
-// Hook search form
-document.querySelector('.search-grid').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const keyword = document.getElementById('search-keyword').value;
-    const location = document.getElementById('search-location').value;
+/* ── SERVICES ── */
+#services { background: var(--ink); }
+#services .section-h { color: var(--white); }
+#services .section-sub { color: rgba(255,255,255,.45); }
+.services-list { display: flex; flex-direction: column; gap: 1px; }
+.service-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.service-row:hover { background: rgba(255,255,255,.03); }
+.service-num {
+  font-family: 'Syne', sans-serif;
+  font-size: .7rem; font-weight: 700;
+  color: rgba(201,168,76,.6);
+  letter-spacing: 2px;
+}
+.service-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--white);
+}
+.service-desc { font-size: .87rem; color: rgba(255,255,255,.4); line-height: 1.65; }
+.service-ideal {
+  font-size: .75rem; color: rgba(201,168,76,.7);
+  font-style: italic; text-align: right;
+  white-space: nowrap;
+}
 
-    await loadJobs();
-    CURRENT_CATEGORY = "";
-    CURRENT_PAGE = 1;
-    CURRENT_RESULTS = filterJobs(keyword, location, CURRENT_CATEGORY);
-    renderJobResults();
-});
+/* ── BULK ORDER ── */
+#order { background: var(--off); }
+.order-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+.order-left { position: sticky; top: 90px; }
+.order-left .section-h { margin-bottom: 1.2rem; }
+.order-perks { display: flex; flex-direction: column; gap: .9rem; margin-top: 2rem; }
+.perk {
+  display: flex; align-items: flex-start; gap: .9rem;
+  padding: 1rem 1.2rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+}
+.perk-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem; }
+.perk-text strong { display: block; font-size: .88rem; font-weight: 700; margin-bottom: .2rem; }
+.perk-text span { font-size: .8rem; color: var(--mid); line-height: 1.5; }
 
-// Category filters
-document.querySelectorAll('#job-filters button').forEach(btn => {
-    btn.addEventListener('click', async () => {
-        const category = btn.getAttribute('data-category') || "";
-        CURRENT_CATEGORY = category;
-        CURRENT_PAGE = 1;
+.form-card {
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 40px rgba(0,0,0,.06);
+}
+.form-section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold);
+  margin: 1.5rem 0 1rem;
+  padding-bottom: .5rem;
+  border-bottom: 1px solid var(--border);
+}
+.form-section-title:first-child { margin-top: 0; }
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-grid .full { grid-column: 1 / -1; }
+label {
+  display: block;
+  font-size: .75rem; font-weight: 600;
+  letter-spacing: .4px; text-transform: uppercase;
+  color: var(--mid);
+  margin-bottom: .35rem;
+}
+input[type=text], input[type=email], input[type=tel],
+input[type=number], select, textarea {
+  width: 100%;
+  padding: .68rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: var(--off);
+  font-family: 'DM Sans', sans-serif;
+  font-size: .9rem; color: var(--ink);
+  outline: none;
+  transition: border-color .2s, background .2s;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+textarea { resize: vertical; min-height: 85px; }
 
-        const keyword = document.getElementById('search-keyword').value;
-        const location = document.getElementById('search-location').value;
+.products-table { width: 100%; border-collapse: collapse; margin-top: .3rem; }
+.products-table th {
+  background: var(--off);
+  padding: .55rem .7rem;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+  color: var(--mid); text-align: left;
+  border-bottom: 1.5px solid var(--border);
+}
+.products-table td { padding: .45rem .5rem; }
+.products-table tr:not(:last-child) td { border-bottom: 1px solid #f0ece6; }
+.products-table input, .products-table select {
+  padding: .4rem .6rem;
+  font-size: .82rem;
+}
+.add-row-btn {
+  margin-top: .8rem;
+  background: transparent;
+  border: 1.5px dashed var(--border);
+  color: var(--gold);
+  padding: .5rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: .82rem;
+  transition: border-color .2s, background .2s;
+}
+.add-row-btn:hover { border-color: var(--gold); background: rgba(201,168,76,.05); }
+.remove-row { background: none; border: none; color: #cc3333; cursor: pointer; padding: 0 .3rem; font-size: .9rem; }
 
-        await loadJobs();
-        CURRENT_RESULTS = filterJobs(keyword, location, CURRENT_CATEGORY);
-        renderJobResults();
-    });
-});
+.submit-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .9rem 2.2rem;
+  background: var(--ink); color: var(--gold);
+  border: none; border-radius: 10px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: .95rem;
+  cursor: pointer; margin-top: 1.5rem;
+  transition: background .2s, transform .15s, box-shadow .15s;
+  letter-spacing: .3px;
+}
+.submit-btn:hover {
+  background: var(--slate);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.2);
+}
+.submit-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.form-success {
+  display: none; margin-top: 1.5rem;
+  padding: 1.1rem 1.3rem;
+  background: #eef7ee;
+  border-left: 4px solid #4caf50;
+  border-radius: 8px;
+  color: #2e7d32; font-weight: 600; font-size: .9rem;
+}
 
-// Modal close handlers
-document.getElementById('job-modal-close').addEventListener('click', closeJobModal);
-document.getElementById('apply-modal-close').addEventListener('click', closeApplyModal);
-document.getElementById('job-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'job-modal') closeJobModal();
-});
-document.getElementById('apply-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'apply-modal') closeApplyModal();
-});
-    </script>
+/* ── CONTACT ── */
+#contact {
+  background: var(--ink);
+  padding: 6rem 3rem;
+}
+#contact .inner { max-width: 1280px; margin: 0 auto; }
+#contact .section-h { color: var(--white); }
+#contact .section-sub { color: rgba(255,255,255,.45); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+}
+.contact-box {
+  background: rgba(255,255,255,.04);
+  border: 1.5px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color .2s;
+}
+.contact-box:hover { border-color: rgba(201,168,76,.4); }
+.contact-box h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--white); margin-bottom: .5rem;
+}
+.contact-box p { font-size: .87rem; color: rgba(255,255,255,.4); line-height: 1.65; margin-bottom: 1.2rem; }
+.contact-box input,
+.contact-box select,
+.contact-box textarea {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  color: var(--white);
+}
+.contact-box input::placeholder,
+.contact-box textarea::placeholder { color: rgba(255,255,255,.25); }
+.contact-box input:focus,
+.contact-box select:focus,
+.contact-box textarea:focus {
+  border-color: var(--gold);
+  background: rgba(255,255,255,.08);
+}
+.contact-box label { color: rgba(255,255,255,.4); }
+.contact-form-grid { display: flex; flex-direction: column; gap: .9rem; }
+
+/* ── FOOTER ── */
+footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 -2px 12px rgba(0,0,0,.04);
+  padding: 2.5rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo {
+  text-decoration: none;
+  display: inline-flex; align-items: center;
+  line-height: 0;
+}
+.footer-logo-img {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+footer p { font-size: .8rem; color: rgba(0,0,0,.45); }
+footer a { color: var(--rust); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  .hero-visual { display: none; }
+  .service-row { grid-template-columns: 60px 1fr; }
+  .service-desc, .service-ideal { display: none; }
+  .order-layout { grid-template-columns: 1fr; }
+  .order-left { position: static; }
+  .contact-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0 1.2rem; }
+  nav ul { display: none; }
+  .section, .section-full { padding: 4rem 1.5rem; }
+  .form-grid { grid-template-columns: 1fr; }
+  .form-grid .full { grid-column: 1; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo"><img src="data:image/png;base64,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" alt="Kakaroo" class="nav-logo-img"/></a>
+  <ul>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#jobs">Jobs</a></li>
+    <li><a href="#apparel">Apparel</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#order">Bulk Orders</a></li>
+    <li><a href="#contact" class="nav-cta">Talk to Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="home" class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">IT Recruitment & Brand Identity · Australia</p>
+    <h1>Move forward with<br>the <em>right talent.</em></h1>
+    <p class="hero-body">Kakaroo connects Australia's most capable IT professionals with organisations ready to innovate, scale, and deliver real impact — with precision, insight, and care.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Hire IT Talent</a>
+      <a href="#jobs" class="btn btn-outline">Browse Jobs</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Placements made</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client satisfaction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Tech disciplines</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">AU</div>
+        <div class="stat-label">Australia-wide reach</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY KAKAROO -->
+<div id="why" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Why Kakaroo</div>
+    <h2 class="section-h fade-in">Recruitment that respects<br>both <em>talent and teams.</em></h2>
+    <p class="section-sub fade-in">We operate at the intersection of precision, care, and commercial reality — matching IT professionals with environments where they can actually thrive.</p>
+    <div class="features-grid">
+      <div class="feat-card fade-in">
+        <span class="feat-icon">🎯</span>
+        <div class="feat-title">Deep IT Specialisation</div>
+        <p class="feat-desc">Software engineering, cloud, data, security, and product. We focus exclusively on technology roles — so conversations stay sharp, relevant, and grounded.</p>
+      </div>
+      <div class="feat-card fade-in">
+        <span class="feat-icon">🤝</span>
+        <div class="feat-title">Human-Centred Matching</div>
+        <p class="feat-desc">Beyond skills and titles, we look at working styles, team dynamics, and long-term fit. The goal isn't just to place — it's to build relationships that last.</p>
+      </div>
+      <div class="feat-card fade-in">
+        <span class="feat-icon">📍</span>
+        <div class="feat-title">Australian Context, Global Standards</div>
+        <p class="feat-desc">We understand the nuance of Australian teams and markets, while operating with the pace and polish you'd expect from a global search partner.</p>
+      </div>
+      <div class="feat-card fade-in">
+        <span class="feat-icon">⚡</span>
+        <div class="feat-title">Intentional, Responsive Delivery</div>
+        <p class="feat-desc">Clear communication, curated shortlists, and no noise. We respect your time — and your brand — in every interaction with candidates.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOBS SECTION -->
+<div id="jobs" style="background:var(--slate)">
+  <div class="section-full section">
+    <div class="chip">Career Opportunities</div>
+    <h2 class="section-h">Latest <em>IT Job Listings</em></h2>
+    <p class="section-sub">Curated roles across Australia. Clicking "Apply" takes you directly to the full listing on buyict.com.au.</p>
+
+    <div class="jobs-toolbar">
+      <input type="text" id="jobSearch" placeholder="Search title, skill, keyword…" oninput="filterJobs()"/>
+      <select id="jobCategory" onchange="filterJobs()">
+        <option value="">All Disciplines</option>
+        <option>Software Engineering</option>
+        <option>Cloud & DevOps</option>
+        <option>Data & Analytics</option>
+        <option>Cybersecurity</option>
+        <option>Product & Design</option>
+        <option>IT Leadership</option>
+      </select>
+      <select id="jobType" onchange="filterJobs()">
+        <option value="">All Types</option>
+        <option>Full Time</option>
+        <option>Part Time</option>
+        <option>Contract</option>
+        <option>Casual</option>
+      </select>
+      <button onclick="refreshJobs()">↻ Refresh</button>
+    </div>
+
+    <div id="jobsContainer" class="jobs-grid"></div>
+
+    <div class="jobs-note">
+      ⚡ <strong>How this works:</strong> Listings are sourced from <a href="https://www.seek.com.au" target="_blank">Seek.com.au</a>. "Apply" opens the listing on Seek directly. Want to feature a role exclusively on Kakaroo? <a href="#contact">Talk to us.</a>
+    </div>
+  </div>
+</div>
+
+<!-- APPAREL -->
+<div id="apparel" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Kakaroo Apparel</div>
+    <h2 class="section-h fade-in">Carry your identity<br><em>beyond the screen.</em></h2>
+    <p class="section-sub fade-in">Premium, minimal apparel designed to move with you — from the office to events, conferences, and everything in between.</p>
+    <div class="apparel-grid">
+      <div class="apparel-card fade-in">
+        <div class="apparel-img dark">👕</div>
+        <div class="apparel-body">
+          <div class="apparel-name">Kakaroo Core Tee</div>
+          <div class="apparel-sub">Heavyweight cotton · Unisex fit · Subtle chest mark</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$59 AUD</div>
+            <div class="apparel-tag">Teams & Gifts</div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-card fade-in">
+        <div class="apparel-img charcoal">
+          👕
+          <span class="apparel-badge">LIMITED</span>
+        </div>
+        <div class="apparel-body">
+          <div class="apparel-name">Midnight Logo Tee</div>
+          <div class="apparel-sub">Black on black · Tonal Kakaroo mark · Clean and understated</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$65 AUD</div>
+            <div class="apparel-tag">Limited Run</div>
+          </div>
+        </div>
+      </div>
+      <div class="apparel-card fade-in">
+        <div class="apparel-img cream-bg">
+          👕
+          <span class="apparel-badge">SIGNATURE</span>
+        </div>
+        <div class="apparel-body">
+          <div class="apparel-name">Gold Accent Edition</div>
+          <div class="apparel-sub">Signature gold detailing · Premium finish · Statement piece</div>
+          <div class="apparel-footer">
+            <div class="apparel-price">$72 AUD</div>
+            <div class="apparel-tag">Signature</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:.85rem;color:var(--mid);">Want to order apparel in bulk for your team or event? <a href="#order" style="color:var(--gold);text-decoration:none;font-weight:600;">Place a bulk order →</a></p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services" style="background:var(--ink)">
+  <div class="section">
+    <div class="chip">Services</div>
+    <h2 class="section-h fade-in">Built for teams that take<br><em>hiring seriously.</em></h2>
+    <p class="section-sub fade-in">We shape our work around your reality — not the other way around.</p>
+    <div class="services-list">
+      <div class="service-row fade-in">
+        <div class="service-num">01 · Search</div>
+        <div class="service-name">Specialist IT Recruitment</div>
+        <div class="service-desc">Curated shortlists across software, cloud, data, security, and product. We combine network, research, and direct outreach to surface people who actually fit the brief.</div>
+        <div class="service-ideal">Growth-stage teams & critical hires</div>
+      </div>
+      <div class="service-row fade-in">
+        <div class="service-num">02 · Embedded</div>
+        <div class="service-name">Ongoing Hiring Partnership</div>
+        <div class="service-desc">For organisations with consistent hiring needs, we operate as an extension of your internal team — aligning to your processes, brand, and pace.</div>
+        <div class="service-ideal">Scale-ups & evolving teams</div>
+      </div>
+      <div class="service-row fade-in">
+        <div class="service-num">03 · Brand</div>
+        <div class="service-name">Talent & Apparel Integration</div>
+        <div class="service-desc">Combine recruitment with considered apparel for onboarding, events, and recognition — creating a consistent, tactile expression of your brand.</div>
+        <div class="service-ideal">Culture-driven organisations</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BULK ORDER -->
+<div id="order" style="background:var(--off)">
+  <div class="section">
+    <div class="chip">Wholesale & Bulk Supply</div>
+    <div class="order-layout">
+      <div class="order-left">
+        <h2 class="section-h fade-in">Place a<br><em>Bulk Order.</em></h2>
+        <p class="section-sub fade-in" style="margin-bottom:0">Need products in volume? Fill in your details and we'll confirm availability and pricing within 1–2 business days.</p>
+        <div class="order-perks">
+          <div class="perk fade-in">
+            <div class="perk-icon">📦</div>
+            <div class="perk-text">
+              <strong>Any quantity, any product</strong>
+              <span>From small team orders to full pallet runs — we handle it.</span>
+            </div>
+          </div>
+          <div class="perk fade-in">
+            <div class="perk-icon">⚡</div>
+            <div class="perk-text">
+              <strong>Fast turnaround quote</strong>
+              <span>We respond with pricing and availability within 1–2 business days.</span>
+            </div>
+          </div>
+          <div class="perk fade-in">
+            <div class="perk-icon">🇦🇺</div>
+            <div class="perk-text">
+              <strong>Australia-wide delivery</strong>
+              <span>Brisbane-based, delivering across all states and territories.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card fade-in">
+        <form id="bulkForm" onsubmit="submitOrder(event)">
+          <div class="form-section-title">Your Details</div>
+          <div class="form-grid">
+            <div>
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" required placeholder="Jane"/>
+            </div>
+            <div>
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" required placeholder="Smith"/>
+            </div>
+            <div>
+              <label for="company">Company / Business</label>
+              <input type="text" id="company" name="company" placeholder="Acme Pty Ltd"/>
+            </div>
+            <div>
+              <label for="abn">ABN (optional)</label>
+              <input type="text" id="abn" name="abn" placeholder="12 345 678 901"/>
+            </div>
+            <div>
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="jane@company.com.au"/>
+            </div>
+            <div>
+              <label for="phone">Phone *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="04XX XXX XXX"/>
+            </div>
+            <div class="full">
+              <label for="address">Delivery Address *</label>
+              <input type="text" id="address" name="address" required placeholder="123 Main St, Brisbane QLD 4000"/>
+            </div>
+          </div>
+
+          <div class="form-section-title">Products Required</div>
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>Product Name / SKU</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Unit</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="productsBody">
+              <tr>
+                <td><input type="text" name="product[]" placeholder="e.g. Kakaroo Core Tee" required/></td>
+                <td>
+                  <select name="cat[]">
+                    <option>Apparel</option>
+                    <option>Cleaning & Hygiene</option>
+                    <option>Packaging</option>
+                    <option>Office Supplies</option>
+                    <option>Safety & PPE</option>
+                    <option>General Merchandise</option>
+                    <option>Other</option>
+                  </select>
+                </td>
+                <td><input type="number" name="qty[]" min="1" placeholder="50" required style="width:70px"/></td>
+                <td>
+                  <select name="unit[]">
+                    <option>Units</option>
+                    <option>Boxes</option>
+                    <option>Cartons</option>
+                    <option>Pallets</option>
+                    <option>Kg</option>
+                    <option>Litres</option>
+                  </select>
+                </td>
+                <td><button type="button" class="remove-row" onclick="removeRow(this)">✕</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="add-row-btn" onclick="addRow()">+ Add Another Product</button>
+
+          <div class="form-section-title">Additional Info</div>
+          <div class="form-grid">
+            <div class="full">
+              <label for="delivery">Preferred Delivery Date</label>
+              <input type="text" id="delivery" name="delivery" placeholder="e.g. Within 2 weeks, or DD/MM/YYYY"/>
+            </div>
+            <div class="full">
+              <label for="notes">Special Instructions</label>
+              <textarea id="notes" name="notes" placeholder="Packaging requirements, delivery instructions, budget range, sizing breakdown…"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            Send Bulk Order Request
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          ✅ Request sent to <strong>info@kakaroo.com.au</strong> — we'll be in touch within 1–2 business days.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" style="background:var(--ink)">
+  <div class="section">
+    <div class="chip">Let's Talk</div>
+    <h2 class="section-h fade-in">Let's talk about<br>what you're <em>building.</em></h2>
+    <p class="section-sub fade-in">Whether you're hiring now, planning ahead, or exploring how recruitment and brand can work together — start with a conversation.</p>
+    <div class="contact-grid">
+      <div class="contact-box fade-in">
+        <h3>For Hiring Managers</h3>
+        <p>Share where you're heading, the roles you're considering, and the kind of people who thrive in your environment.</p>
+        <div class="contact-form-grid">
+          <div><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div><label>Email</label><input type="email" placeholder="you@company.com"/></div>
+          <div><label>Company</label><input type="text" placeholder="Company name (optional)"/></div>
+          <div><label>Message</label><textarea placeholder="Tell us about your team and what you're looking to build…"></textarea></div>
+          <button class="btn btn-gold" style="justify-content:center" onclick="sendContact('hiring')">Send Message</button>
+        </div>
+      </div>
+      <div class="contact-box fade-in">
+        <h3>For Candidates</h3>
+        <p>Tell us what you're great at, how you like to work, and where you want to go next.</p>
+        <div class="contact-form-grid">
+          <div><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+          <div>
+            <label>I'm reaching out as</label>
+            <select style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:var(--white)">
+              <option>A candidate seeking roles</option>
+              <option>A hiring manager</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div><label>Message</label><textarea placeholder="Briefly describe your background and what you're looking for…"></textarea></div>
+          <button class="btn btn-gold" style="justify-content:center" onclick="sendContact('candidate')">Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#home" class="footer-logo"><img src="data:image/png;base64,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" alt="Kakaroo" class="footer-logo-img"/></a>
+  <p>© 2026 Kakaroo · IT Recruitment & Brand Identity · Brisbane, Australia</p>
+  <p><a href="mailto:info@kakaroo.com.au">info@kakaroo.com.au</a></p>
+</footer>
+
+<script>
+/* ── JOBS DATA ── */
+const JOBS = [
+  { id:1, title:"Senior Software Engineer – Full Stack", company:"Atlassian", location:"Sydney NSW", type:"Full Time", category:"Software Engineering", salary:"$150k – $185k + equity", posted:"Today", desc:"React, Node.js, and distributed systems experience required. Work on products used by millions of teams worldwide.", logo:"AT", url:"https://www.seek.com.au/job-search?keywords=Senior+Software+Engineer&where=Sydney" },
+  { id:2, title:"Cloud Platform Engineer (AWS)", company:"ANZ Bank", location:"Melbourne VIC", type:"Full Time", category:"Cloud & DevOps", salary:"$130k – $155k", posted:"1 day ago", desc:"Lead cloud infrastructure design on AWS. Terraform, Kubernetes, and CI/CD pipeline experience essential.", logo:"ANZ", url:"https://www.seek.com.au/job-search?keywords=Cloud+Platform+Engineer+AWS&where=Melbourne" },
+  { id:3, title:"Data Engineer – Analytics Platform", company:"Woolworths Group", location:"Brisbane QLD", type:"Full Time", category:"Data & Analytics", salary:"$120k – $140k", posted:"2 days ago", desc:"Build and maintain scalable data pipelines. dbt, Snowflake, and Python required. Hybrid work available.", logo:"WW", url:"https://www.seek.com.au/job-search?keywords=Data+Engineer&where=Brisbane" },
+  { id:4, title:"Cybersecurity Analyst (SOC)", company:"CrowdStrike", location:"Remote / Australia", type:"Contract", category:"Cybersecurity", salary:"$90 – $120/hr", posted:"Today", desc:"Tier 2 SOC analyst position. SIEM experience, threat hunting, and incident response capabilities required.", logo:"CS", url:"https://www.seek.com.au/job-search?keywords=Cybersecurity+Analyst+SOC+Australia" },
+  { id:5, title:"Product Manager – Mobile Apps", company:"Canva", location:"Sydney NSW", type:"Full Time", category:"Product & Design", salary:"$160k – $200k", posted:"3 days ago", desc:"Own the mobile product roadmap. 5+ years PM experience, strong data-driven decision making, and design sensibility.", logo:"CV", url:"https://www.seek.com.au/job-search?keywords=Product+Manager+Mobile&where=Sydney" },
+  { id:6, title:"DevOps Engineer – Azure", company:"Telstra", location:"Brisbane QLD", type:"Full Time", category:"Cloud & DevOps", salary:"$115k – $140k", posted:"2 days ago", desc:"Azure infrastructure, pipelines, and automation. Experience with GitOps and monitoring tools like Datadog preferred.", logo:"TS", url:"https://www.seek.com.au/job-search?keywords=DevOps+Engineer+Azure&where=Brisbane" },
+  { id:7, title:"Frontend Developer – React/TypeScript", company:"REA Group", location:"Melbourne VIC", type:"Full Time", category:"Software Engineering", salary:"$110k – $135k", posted:"4 days ago", desc:"Build consumer-facing features on realestate.com.au. Strong React, TypeScript, and accessibility knowledge required.", logo:"RE", url:"https://www.seek.com.au/job-search?keywords=Frontend+Developer+React+TypeScript&where=Melbourne" },
+  { id:8, title:"IT Director – Digital Transformation", company:"Kakaroo Client", location:"Brisbane QLD", type:"Full Time", category:"IT Leadership", salary:"$220k – $260k package", posted:"Today", desc:"Executive technology leadership role. Drive cloud migration and digital capability uplift for a major Queensland organisation.", logo:"KK", url:"https://www.seek.com.au/job-search?keywords=IT+Director+Digital+Transformation&where=Brisbane" },
+  { id:9, title:"ML Engineer – NLP / LLM", company:"Canva", location:"Remote / Australia", type:"Full Time", category:"Data & Analytics", salary:"$170k – $210k", posted:"1 day ago", desc:"Apply large language models to product features used by 150M+ users. Python, PyTorch, and production ML systems experience.", logo:"CV", url:"https://www.seek.com.au/job-search?keywords=ML+Engineer+NLP&where=Australia" },
+];
+
+let filtered = [...JOBS];
+
+function renderJobs(jobs) {
+  const c = document.getElementById('jobsContainer');
+  if (!jobs.length) {
+    c.innerHTML = '<p class="no-results">No roles found — try adjusting your search.</p>';
+    return;
+  }
+  c.innerHTML = jobs.map((j, i) => `
+    <div class="job-card" style="animation-delay:${i * 0.05}s">
+      <div class="job-card-top">
+        <div class="job-logo">${j.logo}</div>
+        <div>
+          <div class="job-title">${j.title}</div>
+          <div class="job-company">${j.company}</div>
+        </div>
+      </div>
+      <div class="job-meta">
+        <span class="tag">${j.location}</span>
+        <span class="tag ${j.type.toLowerCase().replace(' ','-')}">${j.type}</span>
+        <span class="tag">${j.category}</span>
+      </div>
+      <div class="job-salary">💰 ${j.salary}</div>
+      <p class="job-desc">${j.desc}</p>
+      <div class="job-footer">
+        <span class="job-date">📅 ${j.posted}</span>
+        <a class="job-apply" href="${j.url}" target="_blank" rel="noopener">
+          Apply on Seek
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterJobs() {
+  const kw  = document.getElementById('jobSearch').value.toLowerCase();
+  const cat = document.getElementById('jobCategory').value;
+  const typ = document.getElementById('jobType').value;
+  filtered = JOBS.filter(j =>
+    (!kw  || j.title.toLowerCase().includes(kw) || j.company.toLowerCase().includes(kw) || j.desc.toLowerCase().includes(kw)) &&
+    (!cat || j.category === cat) &&
+    (!typ || j.type === typ)
+  );
+  renderJobs(filtered);
+}
+
+function refreshJobs() {
+  const c = document.getElementById('jobsContainer');
+  c.innerHTML = '<div class="spinner-wrap"><div class="spinner"></div></div>';
+  setTimeout(() => { renderJobs(JOBS); document.getElementById('jobSearch').value=''; document.getElementById('jobCategory').value=''; document.getElementById('jobType').value=''; }, 900);
+}
+
+renderJobs(JOBS);
+
+/* ── PRODUCT ROWS ── */
+function addRow() {
+  const tbody = document.getElementById('productsBody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" name="product[]" placeholder="Product name" required/></td>
+    <td><select name="cat[]"><option>Apparel</option><option>Cleaning & Hygiene</option><option>Packaging</option><option>Office Supplies</option><option>Safety & PPE</option><option>General Merchandise</option><option>Other</option></select></td>
+    <td><input type="number" name="qty[]" min="1" placeholder="50" required style="width:70px"/></td>
+    <td><select name="unit[]"><option>Units</option><option>Boxes</option><option>Cartons</option><option>Pallets</option><option>Kg</option><option>Litres</option></select></td>
+    <td><button type="button" class="remove-row" onclick="removeRow(this)">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+}
+function removeRow(btn) {
+  if (document.querySelectorAll('#productsBody tr').length > 1) btn.closest('tr').remove();
+}
+
+/* ── BULK ORDER SUBMIT ── */
+function submitOrder(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  const fd = new FormData(e.target);
+  const names = fd.getAll('product[]'), cats = fd.getAll('cat[]'), qtys = fd.getAll('qty[]'), units = fd.getAll('unit[]');
+  const products = names.map((n,i) => `  ${i+1}. ${n} | ${cats[i]} | ${qtys[i]} ${units[i]}`).join('\n');
+  const body = `BULK ORDER – Kakaroo\n${'='.repeat(40)}\nName:    ${fd.get('fname')} ${fd.get('lname')}\nCompany: ${fd.get('company')||'—'}\nABN:     ${fd.get('abn')||'—'}\nEmail:   ${fd.get('email')}\nPhone:   ${fd.get('phone')}\nAddress: ${fd.get('address')}\nDelivery:${fd.get('delivery')||'—'}\n\nPRODUCTS:\n${products}\n\nNOTES:\n${fd.get('notes')||'—'}`;
+  window.location.href = `mailto:info@kakaroo.com.au?subject=${encodeURIComponent('Bulk Order – '+fd.get('fname')+' '+fd.get('lname'))}&body=${encodeURIComponent(body)}`;
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    btn.disabled = false;
+    btn.innerHTML = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg> Send Bulk Order Request`;
+    e.target.reset();
+  }, 1500);
+}
+
+/* ── CONTACT ── */
+function sendContact(type) {
+  alert(`Thanks for reaching out! In production this submits to info@kakaroo.com.au. Connect a backend or Formspree to activate.`);
+}
+
+/* ── SCROLL ANIMATIONS ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
